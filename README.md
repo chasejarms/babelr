@@ -70,14 +70,22 @@ Chase's primary responsibilities will be:
 
 - A functioning Redux cycle for new messages (Leo)
 - Prepare the backend for new group creation (Jesse)
-- Get familiar with the Google Translate API and set up any boilerplate so that it can be quickly used on the backend (Chase)
+- A styled user profile page and associated Redux Cycle for logging out (Chase)
 
 **Day 4**: Create the settings page and connect the settings to the color change logic.  If time, create high-contrast grey scale and low-contrast algorithms as well.  By the end of the day:
 
-- A styled user profile page and associated Redux Cycle for logging out(Leo)
+- Get familiar with the Google Translate API and set up any boilerplate so that it can be quickly used on the backend (Leo)
 - Utilize Django to make the API calls (Jesse)
-
+- Create one page website that explains the purpose of the app, a link to download, and a link to the emulator (Chase)
 
 **Day 5**:
 
+- Emulator to showcase the project to recruiters (Leo)
+- Miscellaneous backend work to get product ready for production (Jesse)
+- Cohesive styling for any pages (Chase)
+
 ### Plan for getting users and reviews
+
+- Submit the product to 10+ digital agencies that have overseas
+- Submit the product to popular freelancing platforms (Upwork.com, Freelancer.com, PeoplePerHour.com)
+- Get Kush to invest 10M our new company
