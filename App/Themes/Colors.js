@@ -1,4 +1,9 @@
 const colors = {
+  // new stuff for this app
+  greenMain: '#50c99c',
+  greenDarker: '#61a28c',
+
+  // stuff from the old app
   background: '#1F0808',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',
