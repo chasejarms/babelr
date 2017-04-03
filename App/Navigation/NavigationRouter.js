@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Scene, Router } from 'react-native-router-flux'
-import Styles from './Styles/NavigationContainerStyles'
-import NavigationDrawer from './NavigationDrawer'
+// import Styles from './Styles/NavigationContainerStyles'
+// import NavigationDrawer from './NavigationDrawer'
 
 // screens identified by the router
 // import LaunchScreen from '../Containers/LaunchScreen'
@@ -16,9 +16,9 @@ class NavigationRouter extends Component {
   render () {
     return (
       <Router>
-        <Scene key="root" style={{margin: 30}} hideNavBar>
-          <Scene key="login" component={BabelrLogin} title="Login" initial={true}/>
-          <Scene key="signUp" component={BabelrSignUp} title="Sign Up"/>
+        <Scene key='root' style={{margin: 30}} hideNavBar>
+          <Scene key='login' component={BabelrLogin} title='Login' />
+          <Scene key='signUp' component={BabelrSignUp} title='Sign Up' />
         </Scene>
       </Router>
     )
