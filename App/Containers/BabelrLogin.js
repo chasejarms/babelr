@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 export default class BabelrLogin extends Component {
   render () {
     return (
-      <View>
+      <View style={{margin: 30}}>
         <Text>This is the Login Page</Text>
         <Text onPress={Actions.signUp}>Sign Up</Text>
       </View>
