@@ -6,24 +6,31 @@ export default class BabelrSignUp extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      username: ''
+      username: '',
+      password: '',
+      email: ''
     }
   }
 
   render () {
     return (
-      <View style={{margin: 30}}>
-        <Text>This is the sign up page</Text>
-        <Text>Enter Username</Text>
+      <View>
+        <Text>Email</Text>
         <TextInput
           style={{height: 40}}
-          placeholder='username'
+          onChangeText={(email) => this.setState({email})}
+          placeholder='john@example.com'
+          />
+        <Text>Username</Text>
+        <TextInput
+          style={{height: 40}}
+          placeholder='johnny43'
           onChangeText={(username) => this.setState({username})}
           value={this.state.username}
           />
-        <Text>Enter Password</Text>
+        <Text>Password</Text>
         <TextInput
-          placeholder='password'
+          placeholder='surfingTheUSA144'
           style={{height: 40}}
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}

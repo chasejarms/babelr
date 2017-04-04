@@ -19,6 +19,7 @@ export default class Chat extends Component {
     return (
       <View>
         <Text>On the chat page</Text>
+        <Text>View Group Settings</Text>
         <Modal
           visible={this.state.showModal}
           onRequestClose={this.toggleModal}>

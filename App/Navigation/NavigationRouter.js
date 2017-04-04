@@ -7,9 +7,7 @@ import { Scene, Router } from 'react-native-router-flux'
 // import LaunchScreen from '../Containers/LaunchScreen'
 import BabelrLogin from '../Containers/BabelrLogin'
 import BabelrSignUp from '../Containers/BabelrSignUp'
-import Chat from '../Containers/Chat'
-import GroupList from '../Containers/GroupList'
-import ProfilePage from '../Containers/ProfilePage'
+import ChatPages from '../Containers/ChatPages'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -23,9 +21,7 @@ class NavigationRouter extends Component {
           <Scene key='login' component={BabelrLogin} title='Login' initial />
           <Scene key='signUp' component={BabelrSignUp} title='Sign Up' />
           <Scene key='authenticated' hideNavBar>
-            <Scene key='chat' component={Chat} title='Chat' initial />
-            <Scene key='groupList' component={GroupList} title='GroupList' />
-            <Scene key='profilePage' component={ProfilePage} title='ProfilePage' />
+            <Scene key='chatPages' component={ChatPages} title='ChatPages' initial />
           </Scene>
         </Scene>
       </Router>
