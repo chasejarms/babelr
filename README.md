@@ -31,6 +31,14 @@ Settings
 
 ![settings](/docs/wireframes/settings_scene.png)
 
+Groups
+
+![groups](/docs/wireframes/groups.png)
+
+Add Users
+
+![users](/docs/wireframes/add_users.png)
+
 ### Technologies & Technical Challenges
 
 This app will utilize React Native on the frontend and Django on the backend. Additionally, it will integrate with the Google Translate API.
