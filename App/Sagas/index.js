@@ -9,15 +9,15 @@ import { LoginTypes } from '../Redux/LoginRedux'
 
 /* ------------- Sagas ------------- */
 
-import { login } from './LoginSagas'
+import { loginUser } from './LoginSagas'
 
 /* ------------- API ------------- */
 
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
-const api = DebugConfig.useFixtures ?
-  FixtureAPI :
-  API.create('https://babler.herokuapp.com/')
+const api = DebugConfig.useFixtures
+  ? FixtureAPI
+  : API.create('https://babler.herokuapp.com/')
 
 /* ------------- Connect Types To Sagas ------------- */
 
@@ -26,6 +26,6 @@ export default function * root () {
     // some sagas only receive an action
 
     // some sagas receive extra parameters in addition to an action
-    takeLatest(LoginTypes.LOGIN_REQUEST, login, api)
+    takeLatest(LoginTypes.LOGIN_REQUEST, loginUser, api)
   ]
 }
