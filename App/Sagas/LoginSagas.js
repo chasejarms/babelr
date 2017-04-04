@@ -1,9 +1,9 @@
-import { put } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function * loginUser (api, { username, password }) {
-  const response = yield call(api.authorize, username, password)
+export function * loginUser (api, request) {
+  const response = yield call(api.authorize, request)
 
   if (response.ok) {
     // dispatch successful logins
