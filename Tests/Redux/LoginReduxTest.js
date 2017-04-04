@@ -8,16 +8,16 @@ test('attempt', (t) => {
 })
 
 test('success', (t) => {
-  const state = reducer(INITIAL_STATE, Actions.loginSuccess('hi'))
+  const state = reducer(INITIAL_STATE, Actions.loginSuccess({username: 'bob'}))
 
-  t.is(state.username, 'hi')
+  t.is(state.user.username, 'bob')
 })
 
 test('failure', (t) => {
-  const state = reducer(INITIAL_STATE, Actions.loginFailure(69))
+  const state = reducer(INITIAL_STATE, Actions.loginFailure('69'))
 
   t.false(state.fetching)
-  t.is(state.error, 69)
+  t.is(state.errors, '69')
 })
 
 test('logout', (t) => {
