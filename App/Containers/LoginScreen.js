@@ -1,3 +1,5 @@
+// keeping this file as an example file for auth
+
 import React, { PropTypes } from 'react'
 import {
   View,

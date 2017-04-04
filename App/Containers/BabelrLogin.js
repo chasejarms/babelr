@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, Button } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import Colors from '../Themes/Colors'
+import AuthTextInput from '../Components/AuthTextInput'
+
+const style = {
+  padding: 30,
+  justifyContent: 'center',
+  alignItems: 'center',
+  flex: 1,
+  backgroundColor: Colors.primaryOne,
+  paddingBottom: 100
+}
 
 export default class BabelrLogin extends Component {
   constructor (props) {
@@ -13,18 +24,14 @@ export default class BabelrLogin extends Component {
 
   render () {
     return (
-      <View>
-        <Text>Username</Text>
-        <TextInput
-          style={{height: 40}}
-          placeholder='johnny43'
+      <View style={style}>
+        <AuthTextInput
+          placeholder='username'
           onChangeText={(username) => this.setState({username})}
           value={this.state.username}
           />
-        <Text>Password</Text>
-        <TextInput
-          placeholder='surfingTheUSA144'
-          style={{height: 40}}
+        <AuthTextInput
+          placeholder='password'
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
           />

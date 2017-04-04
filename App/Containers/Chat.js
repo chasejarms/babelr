@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Modal } from 'react-native'
+import BabelrStatusBar from '../Components/BabelrStatusBar'
+import Colors from '../Themes/Colors'
 
 export default class Chat extends Component {
   constructor (props) {
@@ -11,7 +13,7 @@ export default class Chat extends Component {
 
   toggleModal = () => {
     this.setState({
-      showModal: this.state.showModal
+      showModal: !this.state.showModal
     })
   }
 
@@ -19,11 +21,17 @@ export default class Chat extends Component {
     return (
       <View>
         <Text>On the chat page</Text>
-        <Text>View Group Settings</Text>
+        <Text onPress={this.toggleModal}>View Group Settings</Text>
         <Modal
           visible={this.state.showModal}
-          onRequestClose={this.toggleModal}>
+          onRequestClose={this.toggleModal}
+          animationType='slide'>
+          <BabelrStatusBar
+            backgroundColor={Colors.primaryTwo}
+            barStyle='light-content'
+            />
           <Text>This will be the group setting screen</Text>
+          <Text onPress={this.toggleModal}>Click here to exit the modal</Text>
         </Modal>
       </View>
     )

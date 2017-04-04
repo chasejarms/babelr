@@ -12,7 +12,8 @@ export default StyleSheet.create({
 
   // native styling
   applicationView: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   },
   container: {
     flex: 1,

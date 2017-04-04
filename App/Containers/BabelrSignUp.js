@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, Button } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import AuthTextInput from '../Components/AuthTextInput'
 
 export default class BabelrSignUp extends Component {
   constructor (props) {
@@ -15,23 +16,19 @@ export default class BabelrSignUp extends Component {
   render () {
     return (
       <View>
-        <Text>Email</Text>
-        <TextInput
-          style={{height: 40}}
+        <AuthTextInput
+          value={this.state.email}
           onChangeText={(email) => this.setState({email})}
-          placeholder='john@example.com'
+          placeholder='email'
           />
-        <Text>Username</Text>
-        <TextInput
-          style={{height: 40}}
-          placeholder='johnny43'
+        <AuthTextInput
+          placeholder='username'
           onChangeText={(username) => this.setState({username})}
           value={this.state.username}
           />
         <Text>Password</Text>
-        <TextInput
-          placeholder='surfingTheUSA144'
-          style={{height: 40}}
+        <AuthTextInput
+          placeholder='password'
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
           />
