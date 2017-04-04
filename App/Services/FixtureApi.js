@@ -21,8 +21,7 @@ export default {
       data: username.toLowerCase() === 'gantman' ? gantmanData : skellockData
     }
   },
-  loginUser: (username, password) => {
-    // This fixture only supports gantman or else returns skellock
+  authorize: ({ username, password }) => {
     const user = require('../Fixtures/guest.json')
     const errors = require('../Fixtures/errors.json')
 
