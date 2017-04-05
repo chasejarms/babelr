@@ -1,8 +1,8 @@
 import test from 'ava'
 import { put, call } from 'redux-saga/effects'
 import FixtureAPI from '../../App/Services/FixtureApi'
-import { loginUser } from '../../App/Sagas/LoginSagas'
-import LoginActions from '../../App/Redux/LoginRedux'
+import { loginUser } from '../../App/Sagas/SessionSagas'
+import SessionActions from '../../App/Redux/SessionRedux'
 
 const stepper = (fn) => (mock) => fn.next(mock).value
 const goodReq = { username: 'guest', password: 'password' }
@@ -21,7 +21,7 @@ test('success', (t) => {
   step()
 
   // Second step successful return
-  t.deepEqual(step(response), put(LoginActions.loginSuccess(response.user)))
+  t.deepEqual(step(response), put(SessionActions.loginSuccess(response.token)))
 })
 
 test('failure', (t) => {
@@ -30,5 +30,5 @@ test('failure', (t) => {
 
   step()
 
-  t.deepEqual(step(response), put(LoginActions.loginFailure(response.errors)))
+  t.deepEqual(step(response), put(SessionActions.receiveErrors(response.errors)))
 })
