@@ -30,7 +30,7 @@ export default class AuthTextInput extends Component {
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           onFocus={() => this.setState({showPlaceholder: false})}
-          onBlur={() => this.setState({showPlaceholder: true })}
+          onBlur={() => this.setState({showPlaceholder: true})}
           />
       </View>
     )

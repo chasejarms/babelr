@@ -34,7 +34,7 @@ export default class BabelrSignUp extends Component {
         <AuthTextInput
           placeholder='password'
           onChangeText={(password) => this.setState({password})}
-          isPassword={true}
+          isPassword
           value={this.state.password}
           />
         <PillButton

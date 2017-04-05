@@ -28,7 +28,7 @@ export default class BabelrLogin extends Component {
           placeholder='password'
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
-          isPassword={true}
+          isPassword
           />
         <PillButton
           title='LOGIN'
