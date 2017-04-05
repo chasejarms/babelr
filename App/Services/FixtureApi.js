@@ -20,5 +20,15 @@ export default {
       ok: true,
       data: username.toLowerCase() === 'gantman' ? gantmanData : skellockData
     }
+  },
+  authorize: ({ username, password }) => {
+    const user = require('../Fixtures/guest.json')
+    const errors = require('../Fixtures/errors.json')
+
+    if (password === 'password' && username === 'guest') {
+      return { ok: true, user }
+    } else {
+      return { ok: false, errors }
+    }
   }
 }
