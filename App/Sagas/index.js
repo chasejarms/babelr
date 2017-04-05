@@ -5,13 +5,11 @@ import DebugConfig from '../Config/DebugConfig'
 
 /* ------------- Types ------------- */
 
-import { LoginTypes } from '../Redux/LoginRedux'
-import { SignupTypes } from '../Redux/SignupRedux'
+import { SessionTypes } from '../Redux/SessionRedux'
 
 /* ------------- Sagas ------------- */
 
-import { loginUser } from './LoginSagas'
-import { signupUser } from './SignupSagas'
+import { loginUser, signupUser } from './SessionSagas'
 
 /* ------------- API ------------- */
 
@@ -28,7 +26,7 @@ export default function * root () {
     // some sagas only receive an action
 
     // some sagas receive extra parameters in addition to an action
-    takeLatest(SignupTypes.SIGNUP_REQUEST, signupUser, api),
-    takeLatest(LoginTypes.LOGIN_REQUEST, loginUser, api)
+    takeLatest(SessionTypes.SIGNUP_REQUEST, signupUser, api),
+    takeLatest(SessionTypes.LOGIN_REQUEST, loginUser, api)
   ]
 }
