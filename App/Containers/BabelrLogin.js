@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, Button } from 'react-native'
+import { View } from 'react-native'
 import { Actions } from 'react-native-router-flux'
+import AuthTextInput from '../Components/AuthTextInput'
+import PillButton from '../Components/PillButton'
+import Subscript from '../Components/Subscript'
+
+import styles from './Styles/BabelrAuthentication'
 
 export default class BabelrLogin extends Component {
   constructor (props) {
@@ -13,26 +18,27 @@ export default class BabelrLogin extends Component {
 
   render () {
     return (
-      <View>
-        <Text>Username</Text>
-        <TextInput
-          style={{height: 40}}
-          placeholder='johnny43'
+      <View style={styles.authenticationPages}>
+        <AuthTextInput
+          placeholder='username'
           onChangeText={(username) => this.setState({username})}
           value={this.state.username}
           />
-        <Text>Password</Text>
-        <TextInput
-          placeholder='surfingTheUSA144'
-          style={{height: 40}}
+        <AuthTextInput
+          placeholder='password'
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
+          isPassword
           />
-        <Button
-          title='Sign Up'
+        <PillButton
+          title='LOGIN'
           onPress={Actions.authenticated}
           />
-        <Text onPress={Actions.signUp}>Not yet a member? Sign up.</Text>
+        <Subscript
+          innerText='Not yet a member? '
+          callToActionText='Sign Up'
+          onTextPress={Actions.signUp}
+          />
       </View>
     )
   }
