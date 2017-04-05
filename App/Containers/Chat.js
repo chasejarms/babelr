@@ -27,7 +27,7 @@ export default class Chat extends Component {
           onRequestClose={this.toggleModal}
           animationType='slide'>
           <BabelrStatusBar
-            backgroundColor={Colors.primaryTwo}
+            backgroundColor={Colors.darkGrey}
             barStyle='light-content'
             />
           <Text>This will be the group setting screen</Text>

@@ -1,6 +1,7 @@
 const images = {
-  // this is an examples of what would go here
-  // logo: require('../Images/ir.png'),
+  smallLoginBackground: require('../Images/login-background.jpg'),
+  loginBackgroundRed: require('../Images/login-background-red.jpg'),
+  loginBackgroundRedDarken: require('../Images/login-background-red-darken.jpg')
 }
 
 export default images

@@ -1,7 +1,7 @@
 const type = {
-  base: 'Avenir-Book',
-  bold: 'Avenir-Black',
-  emphasis: 'HelveticaNeue-Italic'
+  base: 'Verdana',
+  bold: 'Verdana',
+  emphasis: 'Verdana'
 }
 
 const size = {
@@ -11,11 +11,11 @@ const size = {
   h4: 26,
   h5: 20,
   h6: 19,
-  input: 18,
+  input: 17,
   regular: 17,
   medium: 14,
   small: 12,
-  tiny: 8.5
+  tiny: 8.5,
 }
 
 const style = {
@@ -58,4 +58,3 @@ export default {
   size,
   style
 }
-

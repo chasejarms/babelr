@@ -1,33 +1,36 @@
 import React, { Component } from 'react'
 import { TextInput, View } from 'react-native'
-
-const textInputstyle = {
-  height: 40,
-  color: 'white',
-  paddingLeft: 20
-}
-
-const viewStyle = {
-  borderBottomWidth: 1,
-  borderColor: 'white',
-  borderStyle: 'solid',
-  width: 200,
-  paddingTop: 20
-}
+import styles from './Styles/AuthTextInput'
+import Colors from '../Themes/Colors'
 
 export default class AuthTextInput extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showPlaceholder: true
+    }
+  }
+
   render () {
-    const { placeholder, onChangeText, value } = this.props
+    const { placeholder, onChangeText, value, isPassword, keyboardOpen } = this.props
+    const keyboardType = keyboardOpen || 'default'
+    const secureTextEntry = !!isPassword
+    const shownPlaceholder = this.state.showPlaceholder ? placeholder : ''
     return (
-      <View style={viewStyle}>
+      <View style={styles.viewStyle}>
         <TextInput
-          style={textInputstyle}
-          placeholder={placeholder}
+          style={styles.textInputStyle}
+          placeholder={shownPlaceholder}
           onChangeText={onChangeText}
           value={value}
           autoCapitalize='none'
           autoCorrect={false}
-          placeholderTextColor='white'
+          placeholderTextColor={Colors.lightGrey}
+          selectionColor={Colors.primaryRed}
+          secureTextEntry={secureTextEntry}
+          keyboardType={keyboardType}
+          onFocus={() => this.setState({showPlaceholder: false})}
+          onBlur={() => this.setState({showPlaceholder: true })}
           />
       </View>
     )

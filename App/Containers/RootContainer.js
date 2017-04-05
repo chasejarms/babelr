@@ -23,7 +23,7 @@ class RootContainer extends Component {
     return (
       <View style={styles.applicationView}>
         <BabelrStatusBar
-          backgroundColor={Colors.primaryTwo}
+          backgroundColor={Colors.darkGrey}
           barStyle='light-content'
           />
         <NavigationRouter />
