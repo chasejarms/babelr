@@ -8,6 +8,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: Colors.darkerGrey,
+    backgroundColor: Colors.darkerGrey
   }
 })
