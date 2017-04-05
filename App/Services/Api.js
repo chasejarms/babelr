@@ -44,7 +44,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
-  const authorize = (username, password) => api.put('session', {username, password})
+  const authorize = (request) => api.put('api-token-auth', request)
+  const signup = (user) => api.put('api/users', user)
 
   // ------
   // STEP 3
@@ -63,7 +64,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     getRoot,
     getRate,
     getUser,
-    authorize
+    authorize,
+    signup
   }
 }
 
