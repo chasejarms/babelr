@@ -17,7 +17,7 @@ import { loginUser, signupUser } from './SessionSagas'
 // to the sagas which need it.
 const api = DebugConfig.useFixtures
   ? FixtureAPI
-  : API.create('https://babler.herokuapp.com/')
+  : API.create('https://babelr.herokuapp.com/')
 
 /* ------------- Connect Types To Sagas ------------- */
 
