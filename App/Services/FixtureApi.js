@@ -26,9 +26,9 @@ export default {
     const errors = require('../Fixtures/errors.json')
 
     if (password === 'password' && username === 'guest') {
-      return { ok: true, token }
+      return { ok: true, data: {token} }
     } else {
-      return { ok: false, errors }
+      return { ok: false, data: {errors} }
     }
   },
   signup: (newUser) => {
