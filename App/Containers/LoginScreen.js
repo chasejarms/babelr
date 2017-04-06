@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux'
 import Styles from './Styles/LoginScreenStyles'
 import {Images, Metrics} from '../Themes'
-import LoginActions from '../Redux/LoginRedux'
+import SessionActions from '../Redux/SessionRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 class LoginScreen extends React.Component {
@@ -166,7 +166,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (username, password) => dispatch(SessionActions.loginRequest({username, password}))
   }
 }
 

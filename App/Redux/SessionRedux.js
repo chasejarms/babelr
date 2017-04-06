@@ -4,13 +4,15 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  loginRequest: ['username', 'password'],
-  loginSuccess: ['user'],
-  loginFailure: ['errors'],
+  loginRequest: ['userCredentials'],
+  loginSuccess: ['token'],
+  signupRequest: ['newUser'],
+  receiveCurrentUser: ['user'],
+  receiveErrors: ['errors'],
   logout: null
 })
 
-export const LoginTypes = Types
+export const SessionTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -18,6 +20,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   user: null,
   errors: null,
+  token: null,
   fetching: false
 })
 
@@ -27,10 +30,14 @@ export const INITIAL_STATE = Immutable({
 export const request = (state) => state.merge({ fetching: true })
 
 // we've successfully logged in
-export const success = (state, { user }) =>
-  state.merge({ fetching: false, errors: null, user })
+export const success = (state, { token }) =>
+  state.merge({ fetching: false, errors: null, token })
 
-// we've had a problem logging in
+// receive current user and log them in
+const updateUser = (state, { user }) =>
+  state.merge({ user, token: user.key })
+
+// we've had a problem
 export const failure = (state, { errors }) =>
   state.merge({ fetching: false, errors })
 
@@ -42,7 +49,8 @@ export const logout = (state) => INITIAL_STATE
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
-  [Types.LOGIN_FAILURE]: failure,
+  [Types.RECEIVE_CURRENT_USER]: updateUser,
+  [Types.RECEIVE_ERRORS]: failure,
   [Types.LOGOUT]: logout
 })
 

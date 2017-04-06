@@ -19,6 +19,7 @@ const create = (baseURL = 'https://api.github.com/') => {
     // 10 second timeout...
     timeout: 10000
   })
+  // headers: {'Authorization': 'Token 234jf3049jr'}
 
   // Wrap api's addMonitor to allow the calling code to attach
   // additional monitors in the future.  But only in __DEV__ and only
@@ -44,8 +45,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
-  const authorize = (request) => api.put('api-token-auth', request)
-  const signup = (user) => api.put('api/users', user)
+  const authorize = (userCredentials) => api.post('api-token-auth/', userCredentials)
+  const signup = (user) => api.post('api/users/', user)
 
   // ------
   // STEP 3

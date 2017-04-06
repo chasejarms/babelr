@@ -22,13 +22,16 @@ export default {
     }
   },
   authorize: ({ username, password }) => {
-    const user = require('../Fixtures/guest.json')
+    const token = 'a1b2c3'
     const errors = require('../Fixtures/errors.json')
 
     if (password === 'password' && username === 'guest') {
-      return { ok: true, user }
+      return { ok: true, data: {token} }
     } else {
-      return { ok: false, errors }
+      return { ok: false, data: {errors} }
     }
+  },
+  signup: (newUser) => {
+    return require('../Fixtures/guest.json')
   }
 }
