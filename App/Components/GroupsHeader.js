@@ -9,6 +9,7 @@ export default class IndividualGroup extends Component {
       <View style={styles.container}>
         <View style={styles.groupWrapper}>
           <Text style={styles.text}>Group</Text>
+          <Text style={styles.compareText}>Group</Text>
         </View>
         <Icon name='add' style={styles.plusSign} />
       </View>

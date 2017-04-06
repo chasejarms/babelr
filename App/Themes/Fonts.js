@@ -1,7 +1,7 @@
 const type = {
-  base: 'Verdana',
-  bold: 'Verdana',
-  emphasis: 'Verdana'
+  base: 'Lato-Regular',
+  bold: 'Lato-Bold',
+  bolder: 'Lato-Black'
 }
 
 const size = {
@@ -28,7 +28,7 @@ const style = {
     fontSize: size.h2
   },
   h3: {
-    fontFamily: type.emphasis,
+    fontFamily: type.bolder,
     fontSize: size.h3
   },
   h4: {
@@ -40,7 +40,7 @@ const style = {
     fontSize: size.h5
   },
   h6: {
-    fontFamily: type.emphasis,
+    fontFamily: type.bolder,
     fontSize: size.h6
   },
   normal: {

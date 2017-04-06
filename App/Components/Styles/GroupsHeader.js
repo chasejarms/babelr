@@ -15,7 +15,10 @@ export default StyleSheet.create({
     height: 50,
     backgroundColor: Colors.darkerGrey,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: Colors.lighterGrey,
+    borderStyle: 'solid'
   },
   plusSign: {
     position: 'absolute',
@@ -25,5 +28,11 @@ export default StyleSheet.create({
   },
   text: {
     color: Colors.lighterGrey,
+    fontFamily: 'Lato-Regular',
+    fontSize: 25
+  },
+  compareText: {
+    fontSize: 25,
+    color: Colors.lighterGrey
   }
 })
