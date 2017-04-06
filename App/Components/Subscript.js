@@ -15,7 +15,7 @@ export default class Subscript extends Component {
             onPress={onTextPress}
             style={styles.spanText}
             >
-            { callToActionText }
+            { ' ' + callToActionText }
           </Text>
         </Text>
       </View>

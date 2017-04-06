@@ -1,18 +1,19 @@
 const type = {
-  base: 'Verdana',
-  bold: 'Verdana',
-  emphasis: 'Verdana'
+  base: 'Lato-Regular',
+  bold: 'Lato-Bold',
+  bolder: 'Lato-Black'
 }
 
 const size = {
   h1: 38,
   h2: 34,
   h3: 30,
-  h4: 26,
+  h4: 25,
   h5: 20,
   h6: 19,
   input: 17,
   regular: 17,
+  plusIcon: 30,
   medium: 14,
   small: 12,
   tiny: 8.5
@@ -24,11 +25,11 @@ const style = {
     fontSize: size.h1
   },
   h2: {
-    fontWeight: 'bold',
+    fontWeight: type.bold,
     fontSize: size.h2
   },
   h3: {
-    fontFamily: type.emphasis,
+    fontFamily: type.bolder,
     fontSize: size.h3
   },
   h4: {
@@ -40,7 +41,7 @@ const style = {
     fontSize: size.h5
   },
   h6: {
-    fontFamily: type.emphasis,
+    fontFamily: type.bolder,
     fontSize: size.h6
   },
   normal: {
