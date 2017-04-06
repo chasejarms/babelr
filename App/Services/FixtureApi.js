@@ -24,11 +24,18 @@ export default {
   authorize: ({ username, password }) => {
     const token = 'a1b2c3'
     const errors = require('../Fixtures/errors.json')
+    const checkCredentials = (
+      password === 'password' &&
+      username === 'guest'
+    ) || (
+      password === '' &&
+      username === ''
+    )
 
-    if (password === 'password' && username === 'guest') {
+    if (checkCredentials) {
       return { ok: true, data: {token} }
     } else {
-      return { ok: false, data: {errors} }
+      return { ok: false, data: {non_field_errors: errors} }
     }
   },
   signup: (newUser) => {
