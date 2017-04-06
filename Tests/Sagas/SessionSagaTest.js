@@ -6,7 +6,7 @@ import SessionActions from '../../App/Redux/SessionRedux'
 
 const stepper = (fn) => (mock) => fn.next(mock).value
 const goodReq = { username: 'guest', password: 'password' }
-const badReq = { username: '', password: '' }
+const badReq = { username: 'asdf', password: 'asdf' }
 
 test('first calls API', (t) => {
   const step = stepper(loginUser(FixtureAPI, {userCredentials: goodReq}))
