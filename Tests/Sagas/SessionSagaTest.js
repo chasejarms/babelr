@@ -9,19 +9,19 @@ const goodReq = { username: 'guest', password: 'password' }
 const badReq = { username: '', password: '' }
 
 test('first calls API', (t) => {
-  const step = stepper(loginUser(FixtureAPI, goodReq))
+  const step = stepper(loginUser(FixtureAPI, {userCredentials: goodReq}))
   // first yield is API
   t.deepEqual(step(), call(FixtureAPI.authorize, goodReq))
 })
 
 test('success', (t) => {
   const response = FixtureAPI.authorize(goodReq)
-  const step = stepper(loginUser(FixtureAPI, goodReq))
+  const step = stepper(loginUser(FixtureAPI, {userCredentials: goodReq}))
   // first step API
   step()
 
   // Second step successful return
-  t.deepEqual(step(response), put(SessionActions.loginSuccess(response.token)))
+  t.deepEqual(step(response), put(SessionActions.loginSuccess(response.data.token)))
 })
 
 test('failure', (t) => {
@@ -30,5 +30,5 @@ test('failure', (t) => {
 
   step()
 
-  t.deepEqual(step(response), put(SessionActions.receiveErrors(response.errors)))
+  t.deepEqual(step(response), put(SessionActions.receiveErrors(response.data)))
 })
