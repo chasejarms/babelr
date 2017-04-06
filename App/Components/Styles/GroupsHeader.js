@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import Colors from '../../Themes/Colors'
 import Metrics from '../../Themes/Metrics'
@@ -12,27 +11,24 @@ export default StyleSheet.create({
     flex: 1
   },
   container: {
-    height: 50,
+    height: Metrics.headerHeight,
     backgroundColor: Colors.darkerGrey,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: Colors.lighterGrey,
+    borderColor: Colors.primaryRed,
     borderStyle: 'solid'
   },
   plusSign: {
     position: 'absolute',
-    right: 10,
-    top: 15,
-    fontSize: 30
+    right: Metrics.plusPositionTop,
+    top: Metrics.plusPositionRight,
+    fontSize: Fonts.size.plusIcon,
+    color: Colors.primaryRed
   },
   text: {
-    color: Colors.lighterGrey,
-    fontFamily: 'Lato-Regular',
-    fontSize: 25
-  },
-  compareText: {
-    fontSize: 25,
-    color: Colors.lighterGrey
+    color: Colors.primaryRed,
+    fontFamily: Fonts.type.bold,
+    fontSize: Fonts.size.h4
   }
 })

@@ -18,6 +18,8 @@ export default StyleSheet.create({
   },
   textStyle: {
     color: Colors.primaryRed,
-    fontSize: Fonts.input
+    fontSize: Fonts.input,
+    fontFamily: Fonts.type.bold,
+    letterSpacing: 1
   }
 })

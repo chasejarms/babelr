@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import GroupsHeader from '../Components/GroupsHeader'
 import IndividualGroup from '../Components/IndividualGroup'
-import { Actions } from 'react-native-router-flux'
+// import { Actions } from 'react-native-router-flux'
 import styles from './Styles/GroupList'
 
 let dummyData = [
@@ -25,8 +25,8 @@ let dummyData = [
 
 export default class GroupList extends Component {
   render () {
-    const allGroups = dummyData.map(groupInfo => {
-      return <IndividualGroup groupInfo={groupInfo} />
+    const allGroups = dummyData.map((groupInfo, idx) => {
+      return <IndividualGroup groupInfo={groupInfo} key={idx} />
     })
     return (
       <View style={styles.container}>

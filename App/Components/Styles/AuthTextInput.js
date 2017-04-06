@@ -7,9 +7,9 @@ export default StyleSheet.create({
   textInputStyle: {
     height: Metrics.inputHeight,
     color: Colors.lightGrey,
-    fontFamily: Fonts.base,
+    fontFamily: Fonts.type.base,
     paddingLeft: 15,
-    fontSize: Fonts.input
+    fontSize: Fonts.size.regular
   },
   viewStyle: {
     alignSelf: 'stretch',

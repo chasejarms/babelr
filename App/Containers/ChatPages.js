@@ -5,6 +5,8 @@ import Chat from './Chat'
 import GroupList from './GroupList'
 import ProfilePage from './ProfilePage'
 
+import styles from './Styles/ChatPages'
+
 export default class ChatPages extends Component {
   render () {
     return (
@@ -12,7 +14,7 @@ export default class ChatPages extends Component {
         loop={false}
         showsPagination={false}
         index={1}>
-        <View>
+        <View style={styles.container}>
           <GroupList />
         </View>
         <View>

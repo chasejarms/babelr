@@ -8,11 +8,12 @@ const size = {
   h1: 38,
   h2: 34,
   h3: 30,
-  h4: 26,
+  h4: 25,
   h5: 20,
   h6: 19,
   input: 17,
   regular: 17,
+  plusIcon: 30,
   medium: 14,
   small: 12,
   tiny: 8.5
@@ -24,7 +25,7 @@ const style = {
     fontSize: size.h1
   },
   h2: {
-    fontWeight: 'bold',
+    fontWeight: type.bold,
     fontSize: size.h2
   },
   h3: {
