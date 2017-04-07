@@ -20,6 +20,7 @@ export function * loginUser (api, action) {
 
   if (response.ok) {
     // dispatch successful logins
+    api.config.setHeader('Authorization', `Token ${response.data.token}`)
     yield put(SessionActions.loginSuccess(response.data.token))
   } else {
     // dispatch failure

@@ -1,0 +1,14 @@
+[
+  {
+    "title": "React",
+    "subscribers": ["Chase", "Leo", "Jesse"]
+  },
+  {
+    "title": "HTML",
+    "subscribers": ["Alec", "Bao", "Claire"]
+  },
+  {
+    "title": "Redux",
+    "subscribers": ["John", "Jim", "Tom"]
+  }
+]
