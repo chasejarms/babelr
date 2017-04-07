@@ -1,7 +1,7 @@
 import { put, call } from 'redux-saga/effects'
 import GroupActions from '../Redux/GroupRedux'
 
-// attempst to get groups for a particular user, representing by their token
+// attempts to get groups for a particular user, representing by their token
 export function * requestGroups (api, action) {
   const response = yield call(api.getGroups, action.token)
   if (response.ok) {

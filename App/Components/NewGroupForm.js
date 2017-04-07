@@ -38,7 +38,7 @@ export default class NewGroupForm extends Component {
     return (
       <View style={styles.formContainer}>
         <AuthTextInput
-          placeholder='your awesome group'
+          placeholder='your group name here'
           onChangeText={this.update('groupName')}
           value={this.state.groupName}
           />

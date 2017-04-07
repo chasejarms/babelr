@@ -6,7 +6,7 @@ export default class UserList extends Component {
   render () {
     return (
       <View style={styles.containerStyle}>
-        <Text>This will be the user list</Text>
+        <Text>This is the user list</Text>
       </View>
     )
   }
