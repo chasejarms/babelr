@@ -27,3 +27,14 @@ export function * loginUser (api, action) {
     yield put(SessionActions.receiveErrors(response.data))
   }
 }
+
+// request current user
+export function * requestUser (api, action) {
+  const response = yield call(api.requestUser, action.token)
+
+  if (response.ok) {
+    yield put(SessionActions.receiveCurrentUser(response.data.user))
+  } else {
+    yield put(SessionActions.receiveErrors(response.data))
+  }
+}
