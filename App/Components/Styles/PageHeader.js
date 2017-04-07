@@ -19,10 +19,12 @@ export default StyleSheet.create({
     borderColor: Colors.primaryRed,
     borderStyle: 'solid'
   },
-  plusSign: {
+  plusSignContainer: {
     position: 'absolute',
     right: Metrics.plusPositionTop,
-    top: Metrics.plusPositionRight,
+    top: Metrics.plusPositionRight
+  },
+  plusSign: {
     fontSize: Fonts.size.plusIcon,
     color: Colors.primaryRed
   },

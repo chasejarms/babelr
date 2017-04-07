@@ -25,7 +25,7 @@ export default class Chat extends Component {
         <Modal
           visible={this.state.showModal}
           onRequestClose={this.toggleModal}
-          animationType='slide'>
+          animationType='fade'>
           <BabelrStatusBar
             backgroundColor={Colors.darkGrey}
             barStyle='light-content'

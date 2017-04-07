@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
 import { View, ScrollView } from 'react-native'
-import GroupsHeader from '../Components/GroupsHeader'
+import PageHeader from '../Components/PageHeader'
 import IndividualGroup from '../Components/IndividualGroup'
 import { connect } from 'react-redux'
 import GroupActions from '../Redux/GroupRedux'
 // import { Actions } from 'react-native-router-flux'
 import styles from './Styles/GroupList'
+import NewGroupModal from './NewGroupModal'
 
 class GroupList extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      modalOpen: false
+    }
+  }
 
   componentWillMount () {
     this.props.requestGroups(this.props.token)
+  }
+
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    })
   }
 
   render () {
@@ -23,10 +36,17 @@ class GroupList extends Component {
     }
     return (
       <View style={styles.container}>
-        <GroupsHeader />
+        <PageHeader
+          iconName='add'
+          headerText='GROUPS'
+          onIconPress={this.toggleModal} />
         <ScrollView>
           { allGroups }
         </ScrollView>
+        <NewGroupModal
+          visible={this.state.modalOpen}
+          closeModal={this.toggleModal}
+          />
       </View>
     )
   }
