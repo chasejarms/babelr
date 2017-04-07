@@ -9,6 +9,7 @@ import ChatPages from '../Containers/ChatPages'
 ***************************/
 
 class NavigationRouter extends Component {
+
   render () {
     return (
       <Router>
@@ -16,7 +17,7 @@ class NavigationRouter extends Component {
           <Scene key='login' component={BabelrLogin} title='Login' initial />
           <Scene key='signUp' component={BabelrSignUp} title='Sign Up' />
           <Scene key='authenticated' hideNavBar>
-            <Scene key='chatPages' component={ChatPages} title='ChatPages' initial />
+            <Scene key='chatPages' component={ChatPages} title='ChatPages' />
           </Scene>
         </Scene>
       </Router>

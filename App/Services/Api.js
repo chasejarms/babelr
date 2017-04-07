@@ -9,6 +9,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   //
   // Create and configure an apisauce-based api object.
   //
+
   const api = apisauce.create({
     // base URL is read from the "constructor"
     baseURL,
@@ -19,6 +20,7 @@ const create = (baseURL = 'https://api.github.com/') => {
     // 10 second timeout...
     timeout: 10000
   })
+
   // headers: {'Authorization': 'Token 234jf3049jr'}
 
   // Wrap api's addMonitor to allow the calling code to attach
@@ -47,6 +49,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getUser = (username) => api.get('search/users', {q: username})
   const authorize = (userCredentials) => api.post('api-token-auth/', userCredentials)
   const signup = (user) => api.post('api/users/', user)
+  const getGroups = (user) => api.get('api/chats/', user)
+  const config = api
 
   // ------
   // STEP 3
@@ -62,11 +66,13 @@ const create = (baseURL = 'https://api.github.com/') => {
   //
   return {
     // a list of the API functions from step 2
+    config,
     getRoot,
     getRate,
     getUser,
     authorize,
-    signup
+    signup,
+    getGroups
   }
 }
 

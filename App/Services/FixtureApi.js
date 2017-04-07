@@ -40,5 +40,12 @@ export default {
   },
   signup: (newUser) => {
     return require('../Fixtures/guest.json')
-  }
+  },
+  getGroups: (token) => {
+    const groups = require('../Fixtures/groups.json')
+    return { ok: true, data: {chats: groups} }
+  },
+  config: { setHeader: () => {
+
+  }}
 }
