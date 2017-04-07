@@ -6,7 +6,8 @@ export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
     session: require('./SessionRedux').reducer,
-    groups: require('./GroupRedux').reducer
+    groups: require('./GroupRedux').reducer,
+    userSearch: require('./UserRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)
