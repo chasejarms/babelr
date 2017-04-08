@@ -40,6 +40,6 @@ export default {
     setHeader: () => {}
   },
   getUser: (token) => {
-    return { ok: true, user: require('../Fixtures/guest.json') }
+    return { ok: true, data: { user: require('../Fixtures/guest.json') } }
   }
 }
