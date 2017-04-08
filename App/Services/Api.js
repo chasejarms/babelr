@@ -50,7 +50,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   const authorize = (userCredentials) => api.post('api-token-auth/', userCredentials)
   const signup = (user) => api.post('api/users/', user)
   const getGroups = (user) => api.get('api/chats/', user)
-  const getUsers = (userQuery) => api.get('api/search/', {username: userQuery})
+  const getUsers = (userQuery) => api.get('api/search', {username: userQuery})
   const config = api
 
   // ------
