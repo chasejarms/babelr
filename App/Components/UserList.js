@@ -7,7 +7,7 @@ class UserList extends Component {
   render () {
     const { users } = this.props.userSearch
     if (users[0]) {
-      const allUsers = users.map(user => <Text style={styles.textStyle}>{user.username}</Text>)
+      const allUsers = users.map(user => <Text style={styles.textStyle} key={user.id}>{user.username}</Text>)
       return (
         <View style={styles.containerStyle}>
           { allUsers }

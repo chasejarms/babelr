@@ -47,5 +47,9 @@ export default {
   },
   config: { setHeader: () => {
 
-  }}
+  }},
+  getUsers: (userQuery) => {
+    const userSearch = require('../Fixtures/users.json')
+    return { ok: true, data: userSearch }
+  }
 }
