@@ -46,8 +46,8 @@ const create = (baseURL = 'https://api.github.com/') => {
   //
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
-  const getUser = (username) => api.get('search/users', {q: username})
-  const authorize = (userCredentials) => api.post('api-token-auth/', userCredentials)
+  const getUser = () => api.get('api/profile/')
+  const authorize = (userCredentials) => api.post('api/authenticate/', userCredentials)
   const signup = (user) => api.post('api/users/', user)
   const getGroups = (user) => api.get('api/chats/', user)
   const getUsers = (userQuery) => api.get('api/search', {username: userQuery})

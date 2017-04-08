@@ -97,6 +97,23 @@ export default StyleSheet.create({
   actions: {
     borderWidth: w,
     borderColor: Colors.primaryRed,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    paddingRight: 20,
+    paddingLeft: 20
+  },
+  logoutButton: {
+    flex: 1,
+    backgroundColor: Colors.primaryRed,
+    marginRight: 20
+  },
+  logoutText: {
+    color: Colors.lighterGrey
+  },
+  saveButton: {
+    flex: 1
+  },
+  saveText: {
+
   }
 })

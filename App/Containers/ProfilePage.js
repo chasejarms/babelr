@@ -10,11 +10,20 @@ class ProfilePage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      lang: 'en'
+      preferredLanguage: 'en'
     }
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return !!nextProps.user
+  }
+
   handleLogout = () => {
+    this.props.logout()
+    NavigationActions.login()
+  }
+
+  handleSave = () => {
     this.props.logout()
     NavigationActions.login()
   }
@@ -27,17 +36,17 @@ class ProfilePage extends Component {
             <View style={styles.profileMain}>
               <Image style={styles.avatar}
                 resizeMode={'cover'}
-                source={{uri: 'https://s3-us-west-1.amazonaws.com/babelr/cb8.jpg'}} />
+                source={{uri: this.props.user.avatarUrl || 'https://s3-us-west-1.amazonaws.com/babelr/cb8.jpg'}} />
               <View style={styles.nameWrapper}>
                 <Text
                   adjustsFontSizeToFit={false}
                   style={styles.name}>
-                  Leo
+                  {this.props.user.firstName}
                 </Text>
                 <Text
                   adjustsFontSizeToFit={false}
                   style={styles.name}>
-                  Salat
+                  {this.props.user.lastName}
                 </Text>
               </View>
             </View>
@@ -50,12 +59,12 @@ class ProfilePage extends Component {
                 <Text
                   adjustsFontSizeToFit={false}
                   style={styles.subInfo}>
-                  the_big_l
+                  {this.props.user.username}
                 </Text>
                 <Text
                   adjustsFontSizeToFit={false}
                   style={styles.subInfo}>
-                  {'leo.salat@gmail.com'}
+                  {this.props.user.email}
                 </Text>
               </View>
             </View>
@@ -67,7 +76,7 @@ class ProfilePage extends Component {
                 style={styles.picker}
                 itemStyle={styles.pickerItem}
                 selectedValue={this.state.lang}
-                onValueChange={(lang) => this.setState({lang})}>
+                onValueChange={(preferredLanguage) => this.setState({preferredLanguage})}>
                 <Picker.Item label='English' value='en' />
                 <Picker.Item label='Spanish' value='es' />
                 <Picker.Item label='Russian' value='ru' />
@@ -80,11 +89,15 @@ class ProfilePage extends Component {
         </View>
         <View style={styles.actions}>
           <PillButton
-            title='Save'
-            onPress={this.handleSave} />
-          <PillButton
+            buttonStyles={styles.logoutButton}
+            textStyles={styles.logoutText}
             title='Logout'
             onPress={this.handleLogout} />
+          <PillButton
+            buttonStyles={styles.saveButton}
+            textStyles={styles.saveText}
+            title='Save'
+            onPress={this.handleSave} />
         </View>
       </View>
     )
