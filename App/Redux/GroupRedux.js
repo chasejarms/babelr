@@ -5,6 +5,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   requestGroups: ['token'],
+  requestGroupCreation: ['title', 'userIds'],
   receiveGroups: ['groupItems'],
   receiveGroupErrors: ['errors'],
   logout: null
@@ -16,7 +17,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  groupItems: null,
+  groupItems: [],
   errors: null,
   fetching: false
 })

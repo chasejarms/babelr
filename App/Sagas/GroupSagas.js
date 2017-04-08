@@ -6,7 +6,7 @@ export function * requestGroups (api, action) {
   const response = yield call(api.getGroups, action.token)
   if (response.ok) {
     // dispatch the relevant groups
-    yield put(GroupActions.receiveGroups(response.data.chats))
+    yield put(GroupActions.receiveGroups(response.data))
   } else {
     // dispatch failure
     yield put(GroupActions.receiveGroupErrors(response.data))
