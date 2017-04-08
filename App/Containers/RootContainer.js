@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View } from 'react-native' // will need to add AsyncStorage when needed
 import NavigationRouter from '../Navigation/NavigationRouter'
 import BabelrStatusBar from '../Components/BabelrStatusBar'
 import { connect } from 'react-redux'
@@ -20,6 +20,9 @@ class RootContainer extends Component {
   }
 
   render () {
+    // AsyncStorage.clear((errs) => {
+    //   console.tron.log(errs)
+    // })
     return (
       <View style={styles.applicationView}>
         <BabelrStatusBar
