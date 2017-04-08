@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 
 export default class IndividualUser extends Component {
 
   render () {
-    const { user } = this.props
     return (
-      <Text>{user.username}</Text>
+      <TouchableOpacity onPress={this.props.addUserToGroup}>
+        <Text>{this.props.user.username}</Text>
+      </TouchableOpacity>
     )
   }
 }
