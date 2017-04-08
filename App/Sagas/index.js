@@ -7,11 +7,13 @@ import DebugConfig from '../Config/DebugConfig'
 
 import { SessionTypes } from '../Redux/SessionRedux'
 import { GroupTypes } from '../Redux/GroupRedux'
+import { UserTypes } from '../Redux/UserRedux'
 
 /* ------------- Sagas ------------- */
 
 import { loginUser, signupUser } from './SessionSagas'
 import { requestGroups } from './GroupSagas'
+import { requestUsers } from './UserSagas'
 
 /* ------------- API ------------- */
 
@@ -30,6 +32,7 @@ export default function * root () {
     // some sagas receive extra parameters in addition to an action
     takeLatest(SessionTypes.SIGNUP_REQUEST, signupUser, api),
     takeLatest(SessionTypes.LOGIN_REQUEST, loginUser, api),
-    takeLatest(GroupTypes.REQUEST_GROUPS, requestGroups, api)
+    takeLatest(GroupTypes.REQUEST_GROUPS, requestGroups, api),
+    takeLatest(UserTypes.REQUEST_USERS, requestUsers, api)
   ]
 }

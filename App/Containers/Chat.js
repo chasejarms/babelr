@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, Modal } from 'react-native'
-import BabelrStatusBar from '../Components/BabelrStatusBar'
-import Colors from '../Themes/Colors'
+import { View, Modal } from 'react-native'
+import PageHeader from '../Components/PageHeader'
+import MessageSettings from './MessageSettings'
 
 export default class Chat extends Component {
   constructor (props) {
@@ -20,18 +20,15 @@ export default class Chat extends Component {
   render () {
     return (
       <View>
-        <Text>On the chat page</Text>
-        <Text onPress={this.toggleModal}>View Group Settings</Text>
+        <PageHeader
+          iconName='more-horiz'
+          headerText='MESSAGES'
+          onIconPress={this.toggleModal} />
         <Modal
           visible={this.state.showModal}
           onRequestClose={this.toggleModal}
           animationType='fade'>
-          <BabelrStatusBar
-            backgroundColor={Colors.darkGrey}
-            barStyle='light-content'
-            />
-          <Text>This will be the group setting screen</Text>
-          <Text onPress={this.toggleModal}>Click here to exit the modal</Text>
+          <MessageSettings toggleModal={this.toggleModal} />
         </Modal>
       </View>
     )
