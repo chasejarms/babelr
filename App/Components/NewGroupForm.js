@@ -17,14 +17,12 @@ class NewGroupForm extends Component {
     }
   }
 
-  addUserToGroup = user => {
-    // TODO: check for users that are already in the array
-    // and don't show them on the search list
-    let newSelectedUsers = this.state.selectedUser.slice()
-    newSelectedUsers.push(user)
-    this.setState({
-      selectedUser: newSelectedUsers
-    })
+  addUserToGroup = user => () => {
+    if (this.state.selectedUsers.length < 7) {
+      this.setState({
+        selectedUsers: this.state.selectedUsers.concat([user])
+      })
+    }
   }
 
   update = field => text => {
@@ -39,8 +37,7 @@ class NewGroupForm extends Component {
   }
 
   requestGroupCreation = () => {
-    // this function is merely a placeholder for now
-    console.log('nothing')
+    console.tron.log(this.state.selectedUsers)
   }
 
   render () {
@@ -58,7 +55,8 @@ class NewGroupForm extends Component {
           />
         <UserList
           addUserToGroup={this.addUserToGroup}
-          userSearch={this.state.userSearch} />
+          selectedUsers={this.state.selectedUsers}
+          />
         <PillButton
           title='CREATE GROUP'
           onPress={this.requestGroupCreation}
