@@ -1,17 +1,27 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { ListView, View, Text } from 'react-native'
 import styles from './Styles/UserList'
 import { connect } from 'react-redux'
+// import IndividualUser from './IndividualUser'
 
 class UserList extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      ds: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+    }
+  }
+
   render () {
     const { users } = this.props.userSearch
     if (users[0]) {
-      const allUsers = users.map(user => <Text style={styles.textStyle} key={user.id}>{user.username}</Text>)
+      const dataSource = this.state.ds.cloneWithRows(users)
       return (
-        <View style={styles.containerStyle}>
-          { allUsers }
-        </View>
+        <ListView
+          dataSource={dataSource}
+          renderRow={(rowData) => <Text>{rowData.username}</Text>}
+          />
       )
     } else {
       return (

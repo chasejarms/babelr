@@ -3,7 +3,7 @@ import Colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   containerStyle: {
-    height: 200
+    flex: 1
   },
   textStyle: {
     color: Colors.lighterGrey
