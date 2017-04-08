@@ -20,7 +20,7 @@ export default class ChatPages extends Component {
         <View>
           <Chat />
         </View>
-        <View>
+        <View style={styles.container}>
           <ProfilePage />
         </View>
       </Swiper>

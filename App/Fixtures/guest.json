@@ -3,5 +3,7 @@
   "id": 1,
   "full_name": "John Doe",
   "email": "john.doe@example.com",
-  "key": "a1b2c3"
+  "key": "a1b2c3",
+  "preferred_language": "en",
+  "avatar_url": "https://s3-us-west-1.amazonaws.com/babelr/cb8.jpg"
 }
