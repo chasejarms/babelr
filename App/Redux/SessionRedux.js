@@ -35,7 +35,7 @@ export const success = (state, { token }) =>
 
 // receive current user and log them in
 const updateUser = (state, { user }) =>
-  state.merge({ user, token: user.key })
+  state.merge({ user })
 
 // we've had a problem
 export const failure = (state, { errors }) =>
