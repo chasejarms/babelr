@@ -4,6 +4,7 @@ const { width, height } = Dimensions.get('window')
 
 const metrics = {
   containerPadding: 20,
+  inputPaddingLeft: 15,
   inputHeight: 50,
   inputRadius: 3,
   pillWidth: 200,
