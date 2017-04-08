@@ -17,7 +17,6 @@ export function * signupUser (api, action) {
 // attempts to login
 export function * loginUser (api, action) {
   const response = yield call(api.authorize, action.userCredentials)
-
   if (response.ok) {
     // dispatch successful logins
     api.config.setHeader('Authorization', `Token ${response.data.token}`)
@@ -30,8 +29,9 @@ export function * loginUser (api, action) {
 
 // request current user
 export function * requestUser (api, action) {
-  const response = yield call(api.requestUser, action.token)
+  const response = yield call(api.getUser, action.token)
 
+  console.tron.log(response)
   if (response.ok) {
     yield put(SessionActions.receiveCurrentUser(response.data.user))
   } else {
