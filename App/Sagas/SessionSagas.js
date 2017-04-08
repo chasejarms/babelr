@@ -31,7 +31,6 @@ export function * loginUser (api, action) {
 export function * requestUser (api, action) {
   const response = yield call(api.getUser, action.token)
 
-  console.tron.log(response)
   if (response.ok) {
     yield put(SessionActions.receiveCurrentUser(response.data.user))
   } else {
