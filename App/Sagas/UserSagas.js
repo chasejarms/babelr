@@ -5,7 +5,6 @@ import UserActions from '../Redux/UserRedux'
 export function * requestUsers (api, action) {
   const response = yield call(api.getUsers, action.userQuery)
   // keeping this here as an example of logging something to reactotron
-  // console.tron.log(response)
 
   if (response.ok) {
     yield put(UserActions.receiveUsers(response.data))

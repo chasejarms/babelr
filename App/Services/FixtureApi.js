@@ -36,8 +36,12 @@ export default {
     const groups = require('../Fixtures/groups.json')
     return { ok: true, data: {chats: groups} }
   },
-  config: {
-    setHeader: () => {}
+  config: { setHeader: () => {
+
+  }},
+  getUsers: (userQuery) => {
+    const userSearch = require('../Fixtures/users.json')
+    return { ok: true, data: userSearch }
   },
   getUser: (token) => {
     return { ok: true, data: { user: require('../Fixtures/guest.json') } }
