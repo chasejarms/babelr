@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga'
+import { takeLatest } from 'redux-saga/effects'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
@@ -11,7 +11,7 @@ import { UserTypes } from '../Redux/UserRedux'
 
 /* ------------- Sagas ------------- */
 
-import { loginUser, signupUser } from './SessionSagas'
+import { loginUser, signupUser, requestUser } from './SessionSagas'
 import { requestGroups } from './GroupSagas'
 import { requestUsers } from './UserSagas'
 
@@ -33,6 +33,7 @@ export default function * root () {
     takeLatest(SessionTypes.SIGNUP_REQUEST, signupUser, api),
     takeLatest(SessionTypes.LOGIN_REQUEST, loginUser, api),
     takeLatest(GroupTypes.REQUEST_GROUPS, requestGroups, api),
+    takeLatest(SessionTypes.LOGIN_SUCCESS, requestUser, api),
     takeLatest(UserTypes.REQUEST_USERS, requestUsers, api)
   ]
 }

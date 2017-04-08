@@ -12,15 +12,6 @@ export default {
       data: require('../Fixtures/rateLimit.json')
     }
   },
-  getUser: (username) => {
-    // This fixture only supports gantman or else returns skellock
-    const gantmanData = require('../Fixtures/gantman.json')
-    const skellockData = require('../Fixtures/skellock.json')
-    return {
-      ok: true,
-      data: username.toLowerCase() === 'gantman' ? gantmanData : skellockData
-    }
-  },
   authorize: ({ username, password }) => {
     const token = 'a1b2c3'
     const errors = require('../Fixtures/errors.json')
@@ -51,5 +42,8 @@ export default {
   getUsers: (userQuery) => {
     const userSearch = require('../Fixtures/users.json')
     return { ok: true, data: userSearch }
+  },
+  getUser: (token) => {
+    return { ok: true, data: { user: require('../Fixtures/guest.json') } }
   }
 }

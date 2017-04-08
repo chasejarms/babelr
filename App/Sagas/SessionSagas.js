@@ -17,13 +17,23 @@ export function * signupUser (api, action) {
 // attempts to login
 export function * loginUser (api, action) {
   const response = yield call(api.authorize, action.userCredentials)
-
   if (response.ok) {
     // dispatch successful logins
     api.config.setHeader('Authorization', `Token ${response.data.token}`)
     yield put(SessionActions.loginSuccess(response.data.token))
   } else {
     // dispatch failure
+    yield put(SessionActions.receiveErrors(response.data))
+  }
+}
+
+// request current user
+export function * requestUser (api, action) {
+  const response = yield call(api.getUser, action.token)
+
+  if (response.ok) {
+    yield put(SessionActions.receiveCurrentUser(response.data.user))
+  } else {
     yield put(SessionActions.receiveErrors(response.data))
   }
 }
