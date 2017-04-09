@@ -5,12 +5,14 @@ import DebugConfig from '../Config/DebugConfig'
 
 /* ------------- Types ------------- */
 
+import { StartupTypes } from '../Redux/StartupRedux'
 import { SessionTypes } from '../Redux/SessionRedux'
 import { GroupTypes } from '../Redux/GroupRedux'
 import { UserTypes } from '../Redux/UserRedux'
 
 /* ------------- Sagas ------------- */
 
+import { startup, setAuthHeader } from './StartupSagas'
 import { loginUser, signupUser, requestUser } from './SessionSagas'
 import { requestGroups } from './GroupSagas'
 import { requestUsers } from './UserSagas'
@@ -28,8 +30,10 @@ const api = DebugConfig.useFixtures
 export default function * root () {
   yield [
     // some sagas only receive an action
+    takeLatest(StartupTypes.STARTUP, startup),
 
     // some sagas receive extra parameters in addition to an action
+    takeLatest(StartupTypes.SET_AUTH_HEADER, setAuthHeader, api),
     takeLatest(SessionTypes.SIGNUP_REQUEST, signupUser, api),
     takeLatest(SessionTypes.LOGIN_REQUEST, loginUser, api),
     takeLatest(GroupTypes.REQUEST_GROUPS, requestGroups, api),
