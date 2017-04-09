@@ -44,12 +44,10 @@ const create = (baseURL = 'https://api.github.com/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getRoot = () => api.get('')
-  const getRate = () => api.get('rate_limit')
   const getUser = () => api.get('api/profile/')
   const authorize = (userCredentials) => api.post('api/authenticate/', userCredentials)
   const signup = (user) => api.post('api/users/', user)
-  const getGroups = (user) => api.get('api/chats/', user)
+  const getGroups = () => api.get('api/chats/')
   const getUsers = (userQuery) => api.get('api/search', {username: userQuery})
   const config = api
 
@@ -68,8 +66,6 @@ const create = (baseURL = 'https://api.github.com/') => {
   return {
     // a list of the API functions from step 2
     config,
-    getRoot,
-    getRate,
     getUser,
     authorize,
     signup,
