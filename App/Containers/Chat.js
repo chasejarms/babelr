@@ -59,8 +59,8 @@ class Chat extends Component {
   }
 }
 
-const mapStateToProps = ({ currentMessages }) => ({
-  messages: currentMessages.messages
+const mapStateToProps = ({ currentGroup }) => ({
+  messages: currentGroup.messages
 })
 
 export default connect(mapStateToProps)(Chat)
