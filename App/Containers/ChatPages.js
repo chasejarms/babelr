@@ -17,7 +17,7 @@ export default class ChatPages extends Component {
         <View style={styles.container}>
           <GroupList />
         </View>
-        <View>
+        <View style={styles.container}>
           <Chat />
         </View>
         <View style={styles.container}>

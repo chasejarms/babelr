@@ -4,9 +4,9 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  requestMessages: ['groupId'],
+  requestMessages: ['groupId', 'language'],
   receiveMessages: ['messages'],
-  requestMessageCreation: ['message'],
+  requestMessageCreation: ['messageDetail'],
   receiveNewMessage: ['message'],
   recieveMessageErrors: ['errors'],
   logout: null

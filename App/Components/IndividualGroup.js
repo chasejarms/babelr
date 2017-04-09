@@ -6,7 +6,10 @@ import MessageActions from '../Redux/MessageRedux'
 
 class IndividualGroup extends Component {
   requestMessages = (groupId) => () => {
-    this.props.requestMessages(groupId)
+    console.tron.log('before props')
+    console.tron.log(this.props)
+    console.tron.log('before props')
+    this.props.requestMessages(groupId, this.props.language)
   }
 
   render () {
@@ -40,12 +43,12 @@ class IndividualGroup extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-
+const mapStateToProps = ({session: { user }}) => ({
+  language: user.preferredLanguage
 })
 
 const mapDispatchToProps = dispatch => ({
-  requestMessages: groupId => dispatch(MessageActions.requestMessages(groupId))
+  requestMessages: (groupId, language) => dispatch(MessageActions.requestMessages(groupId, language))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndividualGroup)
