@@ -7,6 +7,7 @@ import MessageActions from '../Redux/MessageRedux'
 class IndividualGroup extends Component {
   requestMessages = (groupId) => () => {
     this.props.requestMessages(groupId)
+    this.props.swipeTo(1)
   }
 
   render () {
