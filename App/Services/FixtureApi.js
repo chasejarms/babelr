@@ -1,17 +1,5 @@
 export default {
   // Functions return fixtures
-  getRoot: () => {
-    return {
-      ok: true,
-      data: require('../Fixtures/root.json')
-    }
-  },
-  getRate: () => {
-    return {
-      ok: true,
-      data: require('../Fixtures/rateLimit.json')
-    }
-  },
   authorize: ({ username, password }) => {
     const token = 'a1b2c3'
     const errors = require('../Fixtures/errors.json')

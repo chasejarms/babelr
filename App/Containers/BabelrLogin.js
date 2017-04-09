@@ -18,6 +18,10 @@ class BabelrLogin extends Component {
     }
   }
 
+  componentDidMount () {
+    this.redirectIfLoggedIn()
+  }
+
   componentDidUpdate () {
     this.redirectIfLoggedIn()
   }

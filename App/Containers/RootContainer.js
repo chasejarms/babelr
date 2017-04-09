@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { View } from 'react-native' // will need to add AsyncStorage when needed
+import { View, Text } from 'react-native' // will need to add AsyncStorage when needed
 import NavigationRouter from '../Navigation/NavigationRouter'
 import BabelrStatusBar from '../Components/BabelrStatusBar'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
-import ReduxPersist from '../Config/ReduxPersist'
 import Colors from '../Themes/Colors'
 
 // Styles
@@ -12,10 +11,20 @@ import styles from './Styles/RootContainerStyles'
 
 class RootContainer extends Component {
 
-  componentDidMount () {
-    // if redux persist is not active fire startup action
-    if (!ReduxPersist.active) {
-      this.props.startup()
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.rehydrated && nextProps.token) {
+      this.props.setAuthHeader(nextProps.token)
+    } else if (nextProps.rehydrated && !nextProps.token) {
+      this.props.startupSuccess()
+    }
+  }
+
+  rehydrated () {
+    if (this.props.readyRender) {
+      return <NavigationRouter />
+    } else {
+      // insert better loading screen here
+      return <View><Text>Loading...</Text></View>
     }
   }
 
@@ -29,18 +38,25 @@ class RootContainer extends Component {
           backgroundColor={Colors.darkGrey}
           barStyle='light-content'
           />
-        <NavigationRouter />
+        {this.rehydrated()}
       </View>
     )
   }
 }
 
-// wraps dispatch to create nicer functions to call within our component
-const mapDispatchToProps = (dispatch) => ({
-  startup: () => dispatch(StartupActions.startup())
+const mapStateToProps = ({session, startup}) => ({
+  token: session.token,
+  rehydrated: startup.rehydrated,
+  readyRender: startup.readyRender
 })
 
-export default connect(null, mapDispatchToProps)(RootContainer)
+// wraps dispatch to create nicer functions to call within our component
+const mapDispatchToProps = (dispatch) => ({
+  setAuthHeader: (token) => dispatch(StartupActions.setAuthHeader(token)),
+  startupSuccess: () => dispatch(StartupActions.startupSuccess())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RootContainer)
 
 // move these back into the View if you want to use the default ignite page
 // As well, make sure to add in status bar from react-native

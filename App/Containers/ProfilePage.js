@@ -75,7 +75,7 @@ class ProfilePage extends Component {
               <Picker
                 style={styles.picker}
                 itemStyle={styles.pickerItem}
-                selectedValue={this.state.lang}
+                selectedValue={this.state.preferredLanguage}
                 onValueChange={(preferredLanguage) => this.setState({preferredLanguage})}>
                 <Picker.Item label='English' value='en' />
                 <Picker.Item label='Spanish' value='es' />
