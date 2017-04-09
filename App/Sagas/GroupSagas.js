@@ -12,3 +12,12 @@ export function * requestGroups (api, action) {
     yield put(GroupActions.receiveGroupErrors(response.data))
   }
 }
+
+export function * requestGroupCreation (api, action) {
+  const response = yield call(api.createGroup, action.newGroupInfo)
+  if (response.ok) {
+    yield put(GroupActions.receiveCreatedGroup(response.data))
+  } else {
+    yield put(GroupActions.receiveGroupErrors(response.data))
+  }
+}

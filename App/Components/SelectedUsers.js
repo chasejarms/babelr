@@ -15,14 +15,12 @@ export default class SelectedUsers extends Component {
     })
 
     if (formattedUsers[0]) {
-      console.tron.log(this.props)
       return (
         <View style={styles.container}>
           { formattedUsers }
         </View>
       )
     }
-    console.tron.log(this.props)
     return (
       <View style={styles.container}>
         <Text style={styles.no}>No selected users...yet</Text>
