@@ -9,7 +9,7 @@ export default () => {
     session: require('./SessionRedux').reducer,
     groups: require('./GroupRedux').reducer,
     userSearch: require('./UserRedux').reducer,
-    currentMessages: require('./MessageRedux').reducer
+    currentGroup: require('./MessageRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

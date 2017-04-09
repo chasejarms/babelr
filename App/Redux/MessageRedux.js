@@ -4,6 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  selectGroup: ['groupId', 'groupName'],
   requestMessages: ['groupId', 'language'],
   receiveMessages: ['messages'],
   requestMessageCreation: ['messageDetail'],
@@ -18,6 +19,8 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
+  groupId: null,
+  groupName: null,
   messages: [],
   messageErrors: null,
   fetching: false
@@ -27,6 +30,10 @@ export const INITIAL_STATE = Immutable({
 
 // we're attempting to get the messages
 export const request = (state) => state.merge({ fetching: true })
+
+const setGroup = (state, { groupId, groupName }) => {
+  return state.merge({ groupId, groupName })
+}
 
 // receive all messages for a particular chat
 export const receiveMessages = (state, { messages }) => {
@@ -48,6 +55,7 @@ export const logout = (state) => INITIAL_STATE
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.SELECT_GROUP]: setGroup,
   [Types.RECEIVE_MESSAGES]: receiveMessages,
   [Types.RECEIVE_NEW_MESSAGE]: receiveNewMessage,
   [Types.RECEIVE_MESSAGE_ERRORS]: failure,
