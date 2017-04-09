@@ -20,7 +20,6 @@ test('success', (t) => {
   // first step API
   step()
   step(response)
-  console.log(response)
   // Second step successful return
   t.deepEqual(step(response), put(SessionActions.loginSuccess(response.data.token)))
 })

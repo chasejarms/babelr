@@ -32,7 +32,6 @@ export const request = (state) => state.merge({ fetching: true })
 
 export const receiveCreatedGroup = (state, { group }) => {
   const newGroupItems = [...state.groupItems, group]
-  console.tron.log(newGroupItems)
   return state.merge({ groupItems: newGroupItems })
 }
 
