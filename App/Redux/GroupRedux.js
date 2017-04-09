@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  requestGroups: ['token'],
+  requestGroups: null,
   receiveGroups: ['groupItems'],
   receiveGroupErrors: ['errors'],
   logout: null
