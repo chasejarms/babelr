@@ -9,6 +9,7 @@ import { StartupTypes } from '../Redux/StartupRedux'
 import { SessionTypes } from '../Redux/SessionRedux'
 import { GroupTypes } from '../Redux/GroupRedux'
 import { UserTypes } from '../Redux/UserRedux'
+import { MessageTypes } from '../Redux/MessageRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -16,6 +17,7 @@ import { startup, setAuthHeader } from './StartupSagas'
 import { loginUser, signupUser, requestUser } from './SessionSagas'
 import { requestGroups, requestGroupCreation } from './GroupSagas'
 import { requestUsers } from './UserSagas'
+import { requestMessages } from './MessageSagas'
 
 /* ------------- API ------------- */
 
@@ -39,6 +41,7 @@ export default function * root () {
     takeLatest(GroupTypes.REQUEST_GROUPS, requestGroups, api),
     takeLatest(GroupTypes.REQUEST_GROUP_CREATION, requestGroupCreation, api),
     takeLatest(SessionTypes.LOGIN_SUCCESS, requestUser, api),
-    takeLatest(UserTypes.REQUEST_USERS, requestUsers, api)
+    takeLatest(UserTypes.REQUEST_USERS, requestUsers, api),
+    takeLatest(MessageTypes.REQUEST_MESSAGES, requestMessages, api)
   ]
 }

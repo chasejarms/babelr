@@ -50,6 +50,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getGroups = () => api.get('api/chats/')
   const getUsers = (userQuery) => api.get('api/search', {username: userQuery})
   const createGroup = (newGroupInfo) => api.post('api/chats/', newGroupInfo)
+  const requestMessages = (groupId) => api.get(`api/chats/${groupId}/`)
   const config = api
 
   // ------
@@ -72,7 +73,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     signup,
     getGroups,
     getUsers,
-    createGroup
+    createGroup,
+    requestMessages
   }
 }
 

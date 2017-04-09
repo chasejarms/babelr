@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './Styles/IndividualGroup'
+import { connect } from 'react-redux'
+import MessageActions from '../Redux/MessageRedux'
 
-export default class IndividualGroup extends Component {
+class IndividualGroup extends Component {
+  requestMessages = (groupId) => () => {
+    this.props.requestMessages(groupId)
+  }
+
   render () {
     // use avatarUrl in here later
-    const { title, subscribers } = this.props.groupInfo
+    const { title, subscribers, id } = this.props.groupInfo
     const formattedSubscribers = subscribers.map(subscriber => {
       return subscriber.username
     }).join(', ')
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this.requestMessages(id)}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.avatar}
@@ -29,7 +35,17 @@ export default class IndividualGroup extends Component {
             numberOfLines={1}
             style={styles.chatMembers}>{ formattedSubscribers }</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+  requestMessages: groupId => dispatch(MessageActions.requestMessages(groupId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndividualGroup)
