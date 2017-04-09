@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import MessageActions from '../Redux/MessageRedux'
 
 class IndividualGroup extends Component {
-  requestMessages = (groupId) => () => {
+  handlePress = (groupId) => () => {
     this.props.requestMessages(groupId)
+    this.props.swipeTo(1)
   }
 
   render () {
@@ -16,7 +17,7 @@ class IndividualGroup extends Component {
       return subscriber.username
     }).join(', ')
     return (
-      <TouchableOpacity style={styles.container} onPress={this.requestMessages(id)}>
+      <TouchableOpacity style={styles.container} onPress={this.handlePress(id)}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.avatar}

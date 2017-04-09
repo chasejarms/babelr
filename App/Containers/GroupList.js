@@ -31,7 +31,7 @@ class GroupList extends Component {
     let allGroups
     if (groupItems) {
       allGroups = groupItems.map((groupInfo, idx) => {
-        return <IndividualGroup groupInfo={groupInfo} key={idx} />
+        return <IndividualGroup swipeTo={this.props.swipeTo} groupInfo={groupInfo} key={idx} />
       })
     }
     return (
