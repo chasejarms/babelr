@@ -17,7 +17,7 @@ class GroupList extends Component {
   }
 
   componentWillMount () {
-    this.props.requestGroups(this.props.token)
+    this.props.requestGroups()
   }
 
   toggleModal = () => {
@@ -58,7 +58,7 @@ const mapStateToProps = ({ groups, session }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  requestGroups: token => dispatch(GroupActions.requestGroups(token))
+  requestGroups: () => dispatch(GroupActions.requestGroups())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupList)
