@@ -14,7 +14,7 @@ import { UserTypes } from '../Redux/UserRedux'
 
 import { startup, setAuthHeader } from './StartupSagas'
 import { loginUser, signupUser, requestUser } from './SessionSagas'
-import { requestGroups } from './GroupSagas'
+import { requestGroups, requestGroupCreation } from './GroupSagas'
 import { requestUsers } from './UserSagas'
 
 /* ------------- API ------------- */
@@ -37,6 +37,7 @@ export default function * root () {
     takeLatest(SessionTypes.SIGNUP_REQUEST, signupUser, api),
     takeLatest(SessionTypes.LOGIN_REQUEST, loginUser, api),
     takeLatest(GroupTypes.REQUEST_GROUPS, requestGroups, api),
+    takeLatest(GroupTypes.REQUEST_GROUP_CREATION, requestGroupCreation, api),
     takeLatest(SessionTypes.LOGIN_SUCCESS, requestUser, api),
     takeLatest(UserTypes.REQUEST_USERS, requestUsers, api)
   ]

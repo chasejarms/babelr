@@ -49,6 +49,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   const signup = (user) => api.post('api/users/', user)
   const getGroups = () => api.get('api/chats/')
   const getUsers = (userQuery) => api.get('api/search', {username: userQuery})
+  const createGroup = (newGroupInfo) => api.post('api/chats/', newGroupInfo)
   const config = api
 
   // ------
@@ -70,7 +71,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     authorize,
     signup,
     getGroups,
-    getUsers
+    getUsers,
+    createGroup
   }
 }
 
