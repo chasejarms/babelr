@@ -6,6 +6,9 @@ export default class IndividualGroup extends Component {
   render () {
     // use avatarUrl in here later
     const { title, subscribers } = this.props.groupInfo
+    const formattedSubscribers = subscribers.map(subscriber => {
+      return subscriber.username
+    }).join(', ')
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
@@ -15,8 +18,16 @@ export default class IndividualGroup extends Component {
             />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.chatName}>{ title }</Text>
-          <Text style={styles.chatMembers}>{ subscribers.join(', ') }</Text>
+          <Text
+            style={styles.chatName}
+            ellipsizeMode='tail'
+            numberOfLines={1}>
+            { title }
+          </Text>
+          <Text
+            ellipsizeMode='tail'
+            numberOfLines={1}
+            style={styles.chatMembers}>{ formattedSubscribers }</Text>
         </View>
       </View>
     )

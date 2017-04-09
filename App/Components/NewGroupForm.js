@@ -6,6 +6,7 @@ import PillButton from './PillButton'
 import UserList from './UserList'
 import { connect } from 'react-redux'
 import UserActions from '../Redux/UserRedux'
+import GroupActions from '../Redux/GroupRedux'
 
 class NewGroupForm extends Component {
   constructor (props) {
@@ -37,7 +38,14 @@ class NewGroupForm extends Component {
   }
 
   requestGroupCreation = () => {
-    console.tron.log(this.state.selectedUsers)
+    const userIds = this.state.selectedUsers.map(user => {
+      return user.id
+    }).join(' ')
+    const groupInfo = {
+      title: this.state.groupName,
+      subscribers: userIds
+    }
+    this.props.requestGroupCreation(groupInfo)
   }
 
   render () {
@@ -67,7 +75,8 @@ class NewGroupForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  requestUsers: userQuery => dispatch(UserActions.requestUsers(userQuery))
+  requestUsers: userQuery => dispatch(UserActions.requestUsers(userQuery)),
+  requestGroupCreation: groupInfo => dispatch(GroupActions.requestGroupCreation(groupInfo))
 })
 
 export default connect(undefined, mapDispatchToProps)(NewGroupForm)
