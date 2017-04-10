@@ -63,3 +63,22 @@ export function * requestUser (api, action) {
     yield put(SessionActions.receiveErrors(response.data))
   }
 }
+
+// update current user
+export function * updateUser (api, action) {
+  const response = yield call(api.updateUser, action.user)
+  const { data } = response
+
+  if (response.ok) {
+    const currentUser = {
+      username: data.user.username,
+      id: data.user.id,
+      preferredLanguage: data.preferred_lang,
+      avatarUrl: data.avatar_url
+    }
+
+    yield put(SessionActions.receiveCurrentUser(currentUser))
+  } else {
+    yield put(SessionActions.receiveErrors(response.data))
+  }
+}
