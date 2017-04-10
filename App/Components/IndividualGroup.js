@@ -5,19 +5,21 @@ import { connect } from 'react-redux'
 import MessageActions from '../Redux/MessageRedux'
 
 class IndividualGroup extends Component {
-  handlePress = (groupId) => () => {
-    this.props.requestMessages(groupId)
+  handlePress = ({id, title}) => () => {
+    this.props.selectGroup(id, title)
+    this.props.requestMessages(id, this.props.language)
     this.props.swipeTo(1)
   }
 
   render () {
     // use avatarUrl in here later
-    const { title, subscribers, id } = this.props.groupInfo
+    const { groupInfo } = this.props
+    const { title, subscribers } = groupInfo
     const formattedSubscribers = subscribers.map(subscriber => {
       return subscriber.username
     }).join(', ')
     return (
-      <TouchableOpacity style={styles.container} onPress={this.handlePress(id)}>
+      <TouchableOpacity style={styles.container} onPress={this.handlePress(groupInfo)}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.avatar}
@@ -41,12 +43,13 @@ class IndividualGroup extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-
+const mapStateToProps = ({session: { user }}) => ({
+  language: user.preferredLanguage
 })
 
 const mapDispatchToProps = dispatch => ({
-  requestMessages: groupId => dispatch(MessageActions.requestMessages(groupId))
+  selectGroup: (groupId, title) => dispatch(MessageActions.selectGroup(groupId, title)),
+  requestMessages: (groupId, language) => dispatch(MessageActions.requestMessages(groupId, language))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndividualGroup)
