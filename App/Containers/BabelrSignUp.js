@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, KeyboardAvoidingView } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import SessionActions from '../Redux/SessionRedux'
 import AuthTextInput from '../Components/AuthTextInput'
@@ -37,34 +37,36 @@ class BabelrSignUp extends Component {
 
   render () {
     return (
-      <View style={styles.authenticationPages}>
-        <AuthTextInput
-          placeholder='email'
-          onChangeText={this.update('email')}
-          value={this.state.email}
-          keyboardOpen='email-address'
-          />
-        <AuthTextInput
-          placeholder='username'
-          onChangeText={this.update('username')}
-          value={this.state.username}
-          />
-        <AuthTextInput
-          placeholder='password'
-          onChangeText={this.update('password')}
-          isPassword
-          value={this.state.password}
-          />
-        <PillButton
-          title='SIGN UP'
-          onPress={this.handleSignup}
-          />
-        <Subscript
-          innerText='Already a member? '
-          callToActionText='Login'
-          onTextPress={Actions.login}
-          />
-      </View>
+      <KeyboardAvoidingView style={styles.keyboardResizing} behavior='padding'>
+        <View style={styles.authenticationPages}>
+          <AuthTextInput
+            placeholder='email'
+            onChangeText={this.update('email')}
+            value={this.state.email}
+            keyboardOpen='email-address'
+            />
+          <AuthTextInput
+            placeholder='username'
+            onChangeText={this.update('username')}
+            value={this.state.username}
+            />
+          <AuthTextInput
+            placeholder='password'
+            onChangeText={this.update('password')}
+            isPassword
+            value={this.state.password}
+            />
+          <PillButton
+            title='SIGN UP'
+            onPress={this.handleSignup}
+            />
+          <Subscript
+            innerText='Already a member? '
+            callToActionText='Login'
+            onTextPress={Actions.login}
+            />
+        </View>
+      </KeyboardAvoidingView>
     )
   }
 }

@@ -9,5 +9,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     backgroundColor: Colors.darkerGrey
+  },
+  keyboardResizing: {
+    flex: 1
   }
 })
