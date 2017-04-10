@@ -42,7 +42,7 @@ export const receiveMessages = (state, { messages }) => {
 
 // receive a new message for a particular chat
 export const receiveNewMessage = (state, { message }) => {
-  const newMessages = [...this.state.messages, message]
+  const newMessages = [...state.messages, message]
   return state.merge({ messages: newMessages })
 }
 
