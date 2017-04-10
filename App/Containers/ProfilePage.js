@@ -10,7 +10,7 @@ class ProfilePage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      preferredLanguage: 'en'
+      preferredLanguage: props.user.preferredLanguage
     }
   }
 
