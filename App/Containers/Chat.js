@@ -23,6 +23,10 @@ class Chat extends Component {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    this.scrollView.scrollToEnd({animated: true})
+  }
+
   componentWillMount () {
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
@@ -64,7 +68,9 @@ class Chat extends Component {
             headerText='MESSAGES'
             onIconPress={this.toggleModal} />
           <View style={styles.messagesContainer}>
-            <ScrollView style={styles.scrollView}>
+            <ScrollView
+              ref={(component) => { this.scrollView = component }}
+              style={styles.scrollView}>
               { messages }
             </ScrollView>
           </View>
