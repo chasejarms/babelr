@@ -45,7 +45,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   // way at this level.
   //
   const getUser = () => api.get('api/profile/')
-  const updateUser = (user) => api.patch('api/profile/', user)
+  const updateUser = (user) => api.put('api/profile/', user)
   const authorize = (userCredentials) => api.post('api/authenticate/', userCredentials)
   const signup = (user) => api.post('api/users/', user)
   const getGroups = () => api.get('api/chats/')
