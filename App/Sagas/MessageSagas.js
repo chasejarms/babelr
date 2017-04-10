@@ -14,8 +14,7 @@ export function * requestMessages (api, action) {
 }
 
 export function * requestNewMessageCreation (api, action) {
-  const response = yield call(api.requestNewMessageCreation, action.groupDetail)
-  console.tron.log(response)
+  const response = yield call(api.sendNewMessage, action.messageDetail)
   if (response.ok) {
     yield put(MessageActions.receiveNewMessage(response.data))
   } else {

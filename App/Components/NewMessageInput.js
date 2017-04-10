@@ -18,6 +18,14 @@ class NewMessageInput extends Component {
   }
 
   onSubmitEditing = () => {
+    const { chat_id, language } = this.props
+    const messageDetail = {
+      chat_id,
+      text: this.state.messageText,
+      language
+    }
+
+    this.props.requestMessageCreation(messageDetail)
   }
 
   render () {
@@ -42,12 +50,13 @@ class NewMessageInput extends Component {
 
   // chat_id, language
 
-const mapStateToProps = ({session: { user }}) => ({
-
+const mapStateToProps = ({session, currentGroup}) => ({
+  chat_id: currentGroup.groupId,
+  language: session.user.preferredLanguage
 })
 
 const mapDispatchToProps = dispatch => ({
-  requestNewMessageCreation: messageDetail => dispatch(MessageActions.requestNewMessageCreation(messageDetail))
+  requestMessageCreation: messageDetail => dispatch(MessageActions.requestMessageCreation(messageDetail))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewMessageInput)

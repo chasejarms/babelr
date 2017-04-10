@@ -17,7 +17,7 @@ import { startup, setAuthHeader } from './StartupSagas'
 import { loginUser, signupUser, requestUser } from './SessionSagas'
 import { requestGroups, requestGroupCreation } from './GroupSagas'
 import { requestUsers } from './UserSagas'
-import { requestMessages } from './MessageSagas'
+import { requestMessages, requestNewMessageCreation } from './MessageSagas'
 
 /* ------------- API ------------- */
 
@@ -42,6 +42,7 @@ export default function * root () {
     takeLatest(GroupTypes.REQUEST_GROUP_CREATION, requestGroupCreation, api),
     takeLatest(SessionTypes.LOGIN_SUCCESS, requestUser, api),
     takeLatest(UserTypes.REQUEST_USERS, requestUsers, api),
-    takeLatest(MessageTypes.REQUEST_MESSAGES, requestMessages, api)
+    takeLatest(MessageTypes.REQUEST_MESSAGES, requestMessages, api),
+    takeLatest(MessageTypes.REQUEST_MESSAGE_CREATION, requestNewMessageCreation, api)
   ]
 }

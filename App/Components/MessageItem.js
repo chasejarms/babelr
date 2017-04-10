@@ -4,7 +4,8 @@ import styles from './Styles/MessageItem'
 
 export default class MessageItem extends Component {
   render () {
-    const { author, text } = this.props.message
+    const { author } = this.props.message
+    const text = this.props.message[`${this.props.lang}_text`]
     return (
       <View style={styles.messageItem}>
         <Text>{ author }</Text>

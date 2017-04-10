@@ -34,7 +34,7 @@ class Chat extends Component {
 
   render () {
     const messages = this.props.messages.map((message, idx) => {
-      return <MessageItem key={idx} message={message} />
+      return <MessageItem key={idx} message={message} lang={this.props.lang} />
     })
     return (
       <View style={styles.container}>
@@ -59,8 +59,9 @@ class Chat extends Component {
   }
 }
 
-const mapStateToProps = ({ currentGroup }) => ({
-  messages: currentGroup.messages
+const mapStateToProps = ({ currentGroup, session }) => ({
+  messages: currentGroup.messages,
+  lang: session.user.preferredLanguage
 })
 
 export default connect(mapStateToProps)(Chat)
