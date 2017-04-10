@@ -44,7 +44,7 @@ class IndividualGroup extends Component {
 }
 
 const mapStateToProps = ({session: { user }}) => ({
-  language: user.preferredLanguage
+  language: user ? user.preferredLanguage : 'en'
 })
 
 const mapDispatchToProps = dispatch => ({
