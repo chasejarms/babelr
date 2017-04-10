@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   View,
   Modal,
-  Keyboard,
   ScrollView,
   KeyboardAvoidingView } from 'react-native'
 import PageHeader from '../Components/PageHeader'
@@ -11,6 +10,7 @@ import NewMessageInput from '../Components/NewMessageInput'
 import MessageItem from '../Components/MessageItem'
 import { connect } from 'react-redux'
 import styles from './Styles/Chat'
+import MessageActions from '../Redux/MessageRedux'
 
 class Chat extends Component {
   constructor (props) {
@@ -23,31 +23,17 @@ class Chat extends Component {
     }
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.lang !== this.props.lang && this.props.groupId && nextProps.groupId) {
+      this.props.requestMessages(this.props.groupId, nextProps.lang)
+    }
     this.scrollView.scrollToEnd({animated: true})
   }
 
-  componentWillMount () {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
-  }
-
-  _keyboardDidShow = (e) => {
-    // let newSize = Dimensions.get('window').height - e.endCoordinates.height - 20
-    // this.setState({
-    //   visibleHeight: {
-    //     height: newSize
-    //   }
-    // })
-  }
-
-  _keyboardDidHide = () => {
-    // let newSize = Dimensions.get('window').height - 20
-    // this.setState({
-    //   visibleHeight: {
-    //     height: newSize
-    //   }
-    // })
+  componentDidMount () {
+    if (this.props.groupId) {
+      this.props.requestMessages(this.props.groupId, this.props.lang)
+    }
   }
 
   toggleModal = () => {
@@ -89,7 +75,12 @@ class Chat extends Component {
 
 const mapStateToProps = ({ currentGroup, session }) => ({
   messages: currentGroup.messages,
-  lang: session.user ? session.user.preferredLanguage : 'en'
+  lang: session.user ? session.user.preferredLanguage : 'en',
+  groupId: currentGroup.groupId
 })
 
-export default connect(mapStateToProps)(Chat)
+const mapDispatchToProps = (dispatch) => ({
+  requestMessages: (groupId, lang) => dispatch(MessageActions.requestMessages(groupId, lang))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat)

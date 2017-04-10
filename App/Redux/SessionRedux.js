@@ -8,6 +8,7 @@ const { Types, Creators } = createActions({
   loginSuccess: ['token'],
   signupRequest: ['newUser'],
   receiveCurrentUser: ['user'],
+  updateUser: ['user'],
   receiveErrors: ['errors'],
   logout: null
 })
