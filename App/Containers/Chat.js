@@ -27,6 +27,7 @@ class Chat extends Component {
     if (nextProps.lang !== this.props.lang && this.props.groupId && nextProps.groupId) {
       this.props.requestMessages(this.props.groupId, nextProps.lang)
     }
+    this.scrollView.scrollToEnd({animated: true})
   }
 
   componentDidMount () {
@@ -53,7 +54,9 @@ class Chat extends Component {
             headerText='MESSAGES'
             onIconPress={this.toggleModal} />
           <View style={styles.messagesContainer}>
-            <ScrollView style={styles.scrollView}>
+            <ScrollView
+              ref={(component) => { this.scrollView = component }}
+              style={styles.scrollView}>
               { messages }
             </ScrollView>
           </View>

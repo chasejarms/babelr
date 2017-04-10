@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, KeyboardAvoidingView } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import SessionActions from '../Redux/SessionRedux'
 import AuthTextInput from '../Components/AuthTextInput'
@@ -40,28 +40,30 @@ class BabelrLogin extends Component {
 
   render () {
     return (
-      <View style={styles.authenticationPages}>
-        <AuthTextInput
-          placeholder='username'
-          onChangeText={this.update('username')}
-          value={this.state.username}
-          />
-        <AuthTextInput
-          placeholder='password'
-          onChangeText={this.update('password')}
-          value={this.state.password}
-          isPassword
-          />
-        <PillButton
-          title='LOGIN'
-          onPress={this.handleLogin}
-          />
-        <Subscript
-          innerText='Not yet a member? '
-          callToActionText='Sign Up'
-          onTextPress={Actions.signUp}
-          />
-      </View>
+      <KeyboardAvoidingView style={styles.keyboardResizing} behavior='padding'>
+        <View style={styles.authenticationPages}>
+          <AuthTextInput
+            placeholder='username'
+            onChangeText={this.update('username')}
+            value={this.state.username}
+            />
+          <AuthTextInput
+            placeholder='password'
+            onChangeText={this.update('password')}
+            value={this.state.password}
+            isPassword
+            />
+          <PillButton
+            title='LOGIN'
+            onPress={this.handleLogin}
+            />
+          <Subscript
+            innerText='Not yet a member? '
+            callToActionText='Sign Up'
+            onTextPress={Actions.signUp}
+            />
+        </View>
+      </KeyboardAvoidingView>
     )
   }
 }
