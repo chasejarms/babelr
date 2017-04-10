@@ -65,8 +65,12 @@ export function * requestUser (api, action) {
 }
 
 // update current user
-export function * updateUser (api, action) {
-  const response = yield call(api.updateUser, action.user)
+export function * updateUser (api, {user}) {
+  const newUser = {
+    preferred_lang: user.preferredLanguage
+  }
+
+  const response = yield call(api.updateUser, newUser)
   const { data } = response
 
   if (response.ok) {
