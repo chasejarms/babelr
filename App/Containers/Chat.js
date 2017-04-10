@@ -83,7 +83,7 @@ class Chat extends Component {
 
 const mapStateToProps = ({ currentGroup, session }) => ({
   messages: currentGroup.messages,
-  lang: session.user.preferredLanguage
+  lang: session.user ? session.user.preferredLanguage : 'en'
 })
 
 export default connect(mapStateToProps)(Chat)
