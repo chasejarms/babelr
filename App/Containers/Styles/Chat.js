@@ -2,14 +2,17 @@ import { StyleSheet } from 'react-native'
 import Metrics from '../../Themes/Metrics'
 
 export default StyleSheet.create({
-  container: {
+  messagesContainer: {
+    paddingLeft: Metrics.containerPadding,
+    flex: 1
+  },
+  keyboardResizing: {
     flex: 1
   },
   scrollView: {
     flex: 1
   },
-  messagesContainer: {
-    padding: Metrics.containerPadding,
+  container: {
     flex: 1
   }
 })

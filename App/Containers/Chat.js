@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { View, Modal, Keyboard, ScrollView } from 'react-native'
+import {
+  View,
+  Modal,
+  Keyboard,
+  ScrollView,
+  KeyboardAvoidingView } from 'react-native'
 import PageHeader from '../Components/PageHeader'
 import MessageSettings from './MessageSettings'
 import NewMessageInput from '../Components/NewMessageInput'
@@ -11,7 +16,10 @@ class Chat extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      showModal: false
+      showModal: false,
+      visibleHeight: {
+        // height: Dimensions.get('window').height - 20
+      }
     }
   }
 
@@ -20,10 +28,22 @@ class Chat extends Component {
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
   }
 
-  _keyboardDidShow = () => {
+  _keyboardDidShow = (e) => {
+    // let newSize = Dimensions.get('window').height - e.endCoordinates.height - 20
+    // this.setState({
+    //   visibleHeight: {
+    //     height: newSize
+    //   }
+    // })
   }
 
   _keyboardDidHide = () => {
+    // let newSize = Dimensions.get('window').height - 20
+    // this.setState({
+    //   visibleHeight: {
+    //     height: newSize
+    //   }
+    // })
   }
 
   toggleModal = () => {
@@ -37,17 +57,19 @@ class Chat extends Component {
       return <MessageItem key={idx} message={message} lang={this.props.lang} />
     })
     return (
-      <View style={styles.container}>
-        <PageHeader
-          iconName='more-horiz'
-          headerText='MESSAGES'
-          onIconPress={this.toggleModal} />
-        <View style={styles.messagesContainer}>
-          <ScrollView style={styles.scrollView}>
-            { messages }
-          </ScrollView>
+      <View style={[styles.container]}>
+        <KeyboardAvoidingView style={styles.keyboardResizing} behavior='padding'>
+          <PageHeader
+            iconName='more-horiz'
+            headerText='MESSAGES'
+            onIconPress={this.toggleModal} />
+          <View style={styles.messagesContainer}>
+            <ScrollView style={styles.scrollView}>
+              { messages }
+            </ScrollView>
+          </View>
           <NewMessageInput />
-        </View>
+        </KeyboardAvoidingView>
         <Modal
           visible={this.state.showModal}
           onRequestClose={this.toggleModal}
