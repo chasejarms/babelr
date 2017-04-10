@@ -6,12 +6,19 @@ import NewMessageInput from '../Components/NewMessageInput'
 import MessageItem from '../Components/MessageItem'
 import { connect } from 'react-redux'
 import styles from './Styles/Chat'
+import MessageActions from '../Redux/MessageRedux'
 
 class Chat extends Component {
   constructor (props) {
     super(props)
     this.state = {
       showModal: false
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.lang !== this.props.lang) {
+      this.props.requestMessages(this.props.groupId, this.props.lang)
     }
   }
 
@@ -61,7 +68,12 @@ class Chat extends Component {
 
 const mapStateToProps = ({ currentGroup, session }) => ({
   messages: currentGroup.messages,
-  lang: session.user.preferredLanguage
+  lang: session.user.preferredLanguage,
+  groupId: currentGroup.groupId
 })
 
-export default connect(mapStateToProps)(Chat)
+const mapDispatchToProps = (dispatch) => ({
+  requestMessages: (groupId, lang) => dispatch(MessageActions.requestMessages(groupId, lang))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat)
