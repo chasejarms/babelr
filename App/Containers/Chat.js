@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   View,
   Modal,
-  Keyboard,
   ScrollView,
   KeyboardAvoidingView } from 'react-native'
 import PageHeader from '../Components/PageHeader'
@@ -25,32 +24,15 @@ class Chat extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.lang !== this.props.lang) {
-      this.props.requestMessages(this.props.groupId, this.props.lang)
+    if (nextProps.lang !== this.props.lang && this.props.groupId && nextProps.groupId) {
+      this.props.requestMessages(this.props.groupId, nextProps.lang)
     }
   }
 
-  componentWillMount () {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
-  }
-
-  _keyboardDidShow = (e) => {
-    // let newSize = Dimensions.get('window').height - e.endCoordinates.height - 20
-    // this.setState({
-    //   visibleHeight: {
-    //     height: newSize
-    //   }
-    // })
-  }
-
-  _keyboardDidHide = () => {
-    // let newSize = Dimensions.get('window').height - 20
-    // this.setState({
-    //   visibleHeight: {
-    //     height: newSize
-    //   }
-    // })
+  componentDidMount () {
+    if (this.props.groupId) {
+      this.props.requestMessages(this.props.groupId, this.props.lang)
+    }
   }
 
   toggleModal = () => {
