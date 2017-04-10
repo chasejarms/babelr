@@ -1,5 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
+import { SessionTypes } from '../Redux/SessionRedux'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -9,8 +10,7 @@ const { Types, Creators } = createActions({
   receiveMessages: ['messages'],
   requestMessageCreation: ['messageDetail'],
   receiveNewMessage: ['message'],
-  recieveMessageErrors: ['errors'],
-  logout: null
+  recieveMessageErrors: ['errors']
 })
 
 export const MessageTypes = Types
@@ -59,7 +59,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.RECEIVE_MESSAGES]: receiveMessages,
   [Types.RECEIVE_NEW_MESSAGE]: receiveNewMessage,
   [Types.RECEIVE_MESSAGE_ERRORS]: failure,
-  [Types.LOGOUT]: logout
+  [SessionTypes.LOGOUT]: logout
 })
 
 /* ------------- Selectors ------------- */
