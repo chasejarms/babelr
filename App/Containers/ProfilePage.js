@@ -24,8 +24,7 @@ class ProfilePage extends Component {
   }
 
   handleSave = () => {
-    this.props.logout()
-    NavigationActions.login()
+    this.props.updateUser(this.state)
   }
 
   render () {
@@ -109,7 +108,8 @@ const mapStateToProps = ({ session }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(SessionActions.logout())
+  logout: () => dispatch(SessionActions.logout()),
+  updateUser: (user) => dispatch(SessionActions.updateUser(user))
 })
 
 export default connect(
