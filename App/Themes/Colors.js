@@ -3,7 +3,8 @@ const colors = {
   darkerGrey: '#13131f',
   darkGrey: '#1d1f2b',
   lightGrey: '#464751',
-  lighterGrey: '#cbccce'
+  lighterGrey: '#cbccce',
+  lighestGrey: '#f5f5f5'
 }
 
 export default colors

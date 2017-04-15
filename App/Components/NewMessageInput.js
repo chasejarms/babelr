@@ -26,6 +26,9 @@ class NewMessageInput extends Component {
     }
 
     this.props.requestMessageCreation(messageDetail)
+    this.setState({
+      messageText: ''
+    })
   }
 
   render () {
@@ -33,12 +36,12 @@ class NewMessageInput extends Component {
       <View style={styles.container}>
         <TextInput
           style={styles.textInput}
-          placeholder='your message here'
+          placeholder={`Message #${this.props.groupTitle}`}
           onChangeText={this.handleMessageUpdate}
           value={this.state.messageText}
           autoCapitalize='none'
           autoCorrect={false}
-          placeholderTextColor={Colors.lightGrey}
+          placeholderTextColor={Colors.lighterGrey}
           selectionColor={Colors.primaryRed}
           keyboardType='default'
           onSubmitEditing={this.onSubmitEditing}
@@ -52,7 +55,8 @@ class NewMessageInput extends Component {
 
 const mapStateToProps = ({session, currentGroup}) => ({
   chat_id: currentGroup.groupId,
-  language: session.user ? session.user.preferredLanguage : 'en'
+  language: session.user ? session.user.preferredLanguage : 'en',
+  groupTitle: currentGroup.title
 })
 
 const mapDispatchToProps = dispatch => ({
