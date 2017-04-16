@@ -11,6 +11,36 @@ class IndividualGroup extends Component {
     this.props.swipeTo(1)
   }
 
+  // websocketStuff = () => {
+  //   let ws = new WebSocket(`wss://babelr.herokuapp.com/chat/${this.props.groupId}`);
+  //
+  //   ws.onopen = () => {
+  //     // connection opened
+  //     console.tron.log('opened connection')
+  //   };
+  //
+  //   ws.onmessage = (e) => {
+  //     // a message was received
+  //     console.tron.log('on message here')
+  //     console.tron.log(e.data);
+  //     console.tron.log('on message here')
+  //   };
+  //
+  //   ws.onerror = (e) => {
+  //     // an error occurred
+  //     console.tron.log('on error here')
+  //     console.tron.log(e.message);
+  //     console.tron.log('on error here')
+  //   };
+  //
+  //   ws.onclose = (e) => {
+  //     // connection closed
+  //     console.tron.log('on close here')
+  //     console.tron.log(e.code, e.reason);
+  //     console.tron.log('on close here')
+  //   };
+  // }
+
   render () {
     // use avatarUrl in here later
     const { groupInfo } = this.props
@@ -43,8 +73,9 @@ class IndividualGroup extends Component {
   }
 }
 
-const mapStateToProps = ({session: { user }}) => ({
-  language: user ? user.preferredLanguage : 'en'
+const mapStateToProps = ({currentGroup, session: { user }}) => ({
+  language: user ? user.preferredLanguage : 'en',
+  groupId: currentGroup.groupId
 })
 
 const mapDispatchToProps = dispatch => ({
