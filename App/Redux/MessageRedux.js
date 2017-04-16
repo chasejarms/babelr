@@ -10,7 +10,7 @@ const { Types, Creators } = createActions({
   receiveMessages: ['messages'],
   requestMessageCreation: ['messageDetail'],
   receiveNewMessage: ['message'],
-  recieveMessageErrors: ['errors']
+  receiveMessageErrors: ['errors']
 })
 
 export const MessageTypes = Types

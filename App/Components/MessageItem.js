@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import styles from './Styles/MessageItem'
 
 export default class MessageItem extends Component {
@@ -8,8 +8,14 @@ export default class MessageItem extends Component {
     const text = this.props.message[`${this.props.lang}_text`]
     return (
       <View style={styles.messageItem}>
-        <Text>{ author }</Text>
-        <Text>{ text }</Text>
+        <Image
+          style={styles.avatar}
+          source={{uri: 'https://s3-us-west-1.amazonaws.com/babelr/cb8.jpg'}}
+        />
+        <View style={styles.messageContent}>
+          <Text style={styles.author}>{ author }</Text>
+          <Text style={styles.messageText}>{ text }</Text>
+        </View>
       </View>
     )
   }

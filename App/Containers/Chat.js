@@ -23,6 +23,10 @@ class Chat extends Component {
     }
   }
 
+  componentDidReceiveProps () {
+    this.scrollView.scrollToEnd({animated: true})
+  }
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.lang !== this.props.lang && this.props.groupId && nextProps.groupId) {
       this.props.requestMessages(this.props.groupId, nextProps.lang)
@@ -33,6 +37,7 @@ class Chat extends Component {
   componentDidMount () {
     if (this.props.groupId) {
       this.props.requestMessages(this.props.groupId, this.props.lang)
+      this.scrollView.scrollToEnd({animated: true})
     }
   }
 
@@ -48,10 +53,13 @@ class Chat extends Component {
     })
     return (
       <View style={[styles.container]}>
-        <KeyboardAvoidingView style={styles.keyboardResizing} behavior='padding'>
+        <KeyboardAvoidingView
+          style={styles.keyboardResizing}
+          behavior='padding'
+        >
           <PageHeader
             iconName='more-horiz'
-            headerText='MESSAGES'
+            headerText={this.props.groupTitle}
             onIconPress={this.toggleModal} />
           <View style={styles.messagesContainer}>
             <ScrollView
@@ -76,7 +84,8 @@ class Chat extends Component {
 const mapStateToProps = ({ currentGroup, session }) => ({
   messages: currentGroup.messages,
   lang: session.user ? session.user.preferredLanguage : 'en',
-  groupId: currentGroup.groupId
+  groupId: currentGroup.groupId,
+  groupTitle: currentGroup.title
 })
 
 const mapDispatchToProps = (dispatch) => ({
