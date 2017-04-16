@@ -10,10 +10,10 @@ export default class MessageItem extends Component {
       <View style={styles.messageItem}>
         <Image
           style={styles.avatar}
-          source={{uri: 'https://s3-us-west-1.amazonaws.com/babelr/cb8.jpg'}}
+          source={{uri: author.avatar_url || 'https://s3-us-west-1.amazonaws.com/babelr/cb8.jpg'}}
         />
         <View style={styles.messageContent}>
-          <Text style={styles.author}>{ author }</Text>
+          <Text style={styles.author}>{ author.username }</Text>
           <Text style={styles.messageText}>{ text }</Text>
         </View>
       </View>
