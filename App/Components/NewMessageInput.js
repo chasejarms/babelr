@@ -54,7 +54,7 @@ class NewMessageInput extends Component {
   // chat_id, language
 
 const mapStateToProps = ({session, currentGroup}) => ({
-  chat_id: currentGroup.groupId,
+  chat_id: currentGroup.id,
   language: session.user ? session.user.preferredLanguage : 'en',
   groupTitle: currentGroup.title
 })
