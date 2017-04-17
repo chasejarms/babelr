@@ -37,6 +37,7 @@ class Chat extends Component {
   componentWillUnmount () {
     this.keyboardDidShowListener.remove()
     this.keyboardDidHideListener.remove()
+    clearInterval(this.interval)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -49,6 +50,9 @@ class Chat extends Component {
     if (this.props.groupId) {
       this.props.requestCurrentGroup(this.props.groupId, this.props.lang)
     }
+    this.interval = setInterval(() => {
+      this.props.requestCurrentGroup(this.props.groupId, this.props.lang)
+    }, 1000)
   }
 
   toggleModal = () => {
