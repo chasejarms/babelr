@@ -6,8 +6,7 @@ import MessageActions from '../Redux/MessageRedux'
 
 class IndividualGroup extends Component {
   handlePress = ({id, title}) => () => {
-    this.props.selectGroup(id, title)
-    this.props.requestMessages(id, this.props.language)
+    this.props.requestCurrentGroup(id, this.props.language)
     this.props.swipeTo(1)
   }
 
@@ -48,8 +47,7 @@ const mapStateToProps = ({session: { user }}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  selectGroup: (groupId, title) => dispatch(MessageActions.selectGroup(groupId, title)),
-  requestMessages: (groupId, language) => dispatch(MessageActions.requestMessages(groupId, language))
+  requestCurrentGroup: (groupId, language) => dispatch(MessageActions.requestCurrentGroup(groupId, language))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndividualGroup)

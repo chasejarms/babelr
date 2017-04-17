@@ -29,14 +29,14 @@ class Chat extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.lang !== this.props.lang && this.props.groupId && nextProps.groupId) {
-      this.props.requestMessages(this.props.groupId, nextProps.lang)
+      this.props.requestCurrentGroup(this.props.groupId, nextProps.lang)
     }
     this.scrollView.scrollToEnd({animated: true})
   }
 
   componentDidMount () {
     if (this.props.groupId) {
-      this.props.requestMessages(this.props.groupId, this.props.lang)
+      this.props.requestCurrentGroup(this.props.groupId, this.props.lang)
       this.scrollView.scrollToEnd({animated: true})
     }
   }
@@ -84,12 +84,12 @@ class Chat extends Component {
 const mapStateToProps = ({ currentGroup, session }) => ({
   messages: currentGroup.messages,
   lang: session.user ? session.user.preferredLanguage : 'en',
-  groupId: currentGroup.groupId,
+  groupId: currentGroup.id,
   groupTitle: currentGroup.title
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  requestMessages: (groupId, lang) => dispatch(MessageActions.requestMessages(groupId, lang))
+  requestCurrentGroup: (groupId, lang) => dispatch(MessageActions.requestCurrentGroup(groupId, lang))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat)
