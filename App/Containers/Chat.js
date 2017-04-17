@@ -3,7 +3,8 @@ import {
   View,
   Modal,
   ScrollView,
-  KeyboardAvoidingView } from 'react-native'
+  KeyboardAvoidingView,
+  Keyboard} from 'react-native'
 import PageHeader from '../Components/PageHeader'
 import MessageSettings from './MessageSettings'
 import NewMessageInput from '../Components/NewMessageInput'
@@ -16,28 +17,37 @@ class Chat extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      showModal: false,
-      visibleHeight: {
-        // height: Dimensions.get('window').height - 20
-      }
+      showModal: false
     }
   }
 
-  componentDidReceiveProps () {
-    this.scrollView.scrollToEnd({animated: true})
+  componentWillMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
+  }
+
+  _keyboardDidShow = () => {
+    this.scrollToBottomOfChat()
+  }
+
+  _keyboardDidHide = () => {
+    this.scrollToBottomOfChat()
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove()
+    this.keyboardDidHideListener.remove()
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.lang !== this.props.lang && this.props.groupId && nextProps.groupId) {
       this.props.requestCurrentGroup(this.props.groupId, nextProps.lang)
     }
-    this.scrollView.scrollToEnd({animated: true})
   }
 
   componentDidMount () {
     if (this.props.groupId) {
       this.props.requestCurrentGroup(this.props.groupId, this.props.lang)
-      this.scrollView.scrollToEnd({animated: true})
     }
   }
 
@@ -45,6 +55,10 @@ class Chat extends Component {
     this.setState({
       showModal: !this.state.showModal
     })
+  }
+
+  scrollToBottomOfChat = (contentHeight) => {
+    this.scrollView.scrollToEnd({animated: true})
   }
 
   render () {
@@ -63,8 +77,14 @@ class Chat extends Component {
             onIconPress={this.toggleModal} />
           <View style={styles.messagesContainer}>
             <ScrollView
-              ref={(component) => { this.scrollView = component }}
-              style={styles.scrollView}>
+              showsVerticalScrollIndicator={false}
+              ref={(component) => {
+                this.scrollView = component
+              }}
+              style={styles.scrollView}
+              onContentSizeChange={(contentWidth, contentHeight) => {
+                this.scrollToBottomOfChat(contentHeight)
+              }}>
               { messages }
             </ScrollView>
           </View>

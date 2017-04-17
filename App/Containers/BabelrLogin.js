@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, KeyboardAvoidingView } from 'react-native'
+import { View, KeyboardAvoidingView, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import SessionActions from '../Redux/SessionRedux'
 import AuthTextInput from '../Components/AuthTextInput'
@@ -41,6 +41,11 @@ class BabelrLogin extends Component {
   render () {
     return (
       <KeyboardAvoidingView style={styles.keyboardResizing} behavior='padding'>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.logo}
+            source={require('../Images/babelr_logo.png')} />
+        </View>
         <View style={styles.authenticationPages}>
           <AuthTextInput
             placeholder='username'
