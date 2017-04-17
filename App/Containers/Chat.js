@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  Modal,
   ScrollView,
   KeyboardAvoidingView } from 'react-native'
 import PageHeader from '../Components/PageHeader'
@@ -52,7 +51,7 @@ class Chat extends Component {
       return <MessageItem key={idx} message={message} lang={this.props.lang} />
     })
     return (
-      <View style={[styles.container]}>
+      <View style={styles.container}>
         <KeyboardAvoidingView
           style={styles.keyboardResizing}
           behavior='padding'
@@ -70,12 +69,10 @@ class Chat extends Component {
           </View>
           <NewMessageInput />
         </KeyboardAvoidingView>
-        <Modal
+        <MessageSettings
           visible={this.state.showModal}
-          onRequestClose={this.toggleModal}
-          animationType='fade'>
-          <MessageSettings toggleModal={this.toggleModal} />
-        </Modal>
+          toggleModal={this.toggleModal}
+        />
       </View>
     )
   }

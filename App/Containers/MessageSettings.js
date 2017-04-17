@@ -1,23 +1,38 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-// import styles from './Styles/MessageSettings'
+import { Modal, View } from 'react-native'
+import styles from './Styles/MessageSettings'
 import PageHeader from '../Components/PageHeader'
 import BabelrStatusBar from '../Components/BabelrStatusBar'
+import PillButton from '../Components/PillButton'
 import Colors from '../Themes/Colors'
 
-export default class MessageSetting extends Component {
+export default class MessageSettings extends Component {
   render () {
     return (
-      <View>
-        <BabelrStatusBar
-          backgroundColor={Colors.darkGrey}
-          barStyle='light-content'
-          />
-        <PageHeader
-          iconName='close'
-          headerText='MESSAGE SETTINGS'
-          onIconPress={this.props.toggleModal} />
-      </View>
+      <Modal
+        animationType='fade'
+        transparent={false}
+        visible={this.props.visible}>
+        <View style={styles.pageView}>
+          <View style={styles.topStuff}>
+            <BabelrStatusBar
+              backgroundColor={Colors.darkGrey}
+              barStyle='light-content'
+              />
+            <PageHeader
+              iconName='close'
+              headerText='GROUP SETTINGS'
+              onIconPress={this.props.toggleModal}
+              />
+          </View>
+            <PillButton
+              buttonStyles={styles.leaveButton}
+              textStyles={styles.leaveText}
+              title='Leave Group'
+              onPress={() => console.tron.log('group left!')}
+              />
+        </View>
+      </Modal>
     )
   }
 }
