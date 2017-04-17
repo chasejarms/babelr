@@ -25,12 +25,12 @@ export default class MessageSettings extends Component {
               onIconPress={this.props.toggleModal}
               />
           </View>
-            <PillButton
-              buttonStyles={styles.leaveButton}
-              textStyles={styles.leaveText}
-              title='Leave Group'
-              onPress={() => console.tron.log('group left!')}
-              />
+          <PillButton
+            buttonStyles={styles.leaveButton}
+            textStyles={styles.leaveText}
+            title='Leave Group'
+            onPress={() => console.tron.log('group left!')}
+          />
         </View>
       </Modal>
     )
