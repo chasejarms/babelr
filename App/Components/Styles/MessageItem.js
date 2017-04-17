@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native'
 import Colors from '../../Themes/Colors'
 import Fonts from '../../Themes/Fonts'
+import Metrics from '../../Themes/Metrics'
 
 export default StyleSheet.create({
   messageItem: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginBottom: 20
+    marginBottom: Metrics.containerPadding
   },
   avatar: {
-    width: 35,
-    height: 35,
+    width: 50,
+    height: 50,
     borderRadius: 4,
     marginRight: 10,
     marginTop: 7
@@ -20,14 +21,15 @@ export default StyleSheet.create({
     justifyContent: 'flex-start'
   },
   author: {
+    marginTop: 4,
     color: Colors.darkerGrey,
-    fontSize: Fonts.size.medium,
+    fontSize: Fonts.size.regular,
     fontFamily: Fonts.type.bold,
     marginBottom: 5
   },
   messageText: {
     color: Colors.darkerGrey,
-    fontSize: Fonts.size.medium,
+    fontSize: Fonts.size.regular,
     fontFamily: Fonts.type.base
   }
 })
