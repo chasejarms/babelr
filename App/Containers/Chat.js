@@ -4,6 +4,8 @@ import {
   Modal,
   ScrollView,
   KeyboardAvoidingView,
+  Text,
+  Image,
   Keyboard} from 'react-native'
 import PageHeader from '../Components/PageHeader'
 import MessageSettings from './MessageSettings'
@@ -22,8 +24,10 @@ class Chat extends Component {
   }
 
   componentWillMount () {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
+    if (this.props.messages.length > 0) {
+      this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
+      this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
+    }
   }
 
   _keyboardDidShow = () => {
@@ -61,43 +65,61 @@ class Chat extends Component {
     this.scrollView.scrollToEnd({animated: true})
   }
 
-  render () {
-    const messages = this.props.messages.map((message, idx) => {
+  formatMessages = () => {
+    return this.props.messages.map((message, idx) => {
       return <MessageItem key={idx} message={message} lang={this.props.lang} />
     })
-    return (
-      <View style={[styles.container]}>
-        <KeyboardAvoidingView
-          style={styles.keyboardResizing}
-          behavior='padding'
-        >
-          <PageHeader
-            iconName='more-horiz'
-            headerText={this.props.groupTitle}
-            onIconPress={this.toggleModal} />
-          <View style={styles.messagesContainer}>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              ref={(component) => {
-                this.scrollView = component
-              }}
-              style={styles.scrollView}
-              onContentSizeChange={(contentWidth, contentHeight) => {
-                this.scrollToBottomOfChat(contentHeight)
-              }}>
-              { messages }
-            </ScrollView>
+  }
+
+  render () {
+    if (this.props.messages.length > 0) {
+      return (
+        <View style={[styles.container]}>
+          <KeyboardAvoidingView
+            style={styles.keyboardResizing}
+            behavior='padding'
+            >
+            <PageHeader
+              iconName='more-horiz'
+              headerText={this.props.groupTitle}
+              onIconPress={this.toggleModal} />
+            <View style={styles.messagesContainer}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                ref={(component) => {
+                  this.scrollView = component
+                }}
+                style={styles.scrollView}
+                onContentSizeChange={(contentWidth, contentHeight) => {
+                  this.scrollToBottomOfChat(contentHeight)
+                }}>
+                { this.formatMessages() }
+              </ScrollView>
+            </View>
+            <NewMessageInput />
+          </KeyboardAvoidingView>
+          <Modal
+            visible={this.state.showModal}
+            onRequestClose={this.toggleModal}
+            animationType='fade'>
+            <MessageSettings toggleModal={this.toggleModal} />
+          </Modal>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.noMessages}>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../Images/babelr_logo.png')} />
           </View>
-          <NewMessageInput />
-        </KeyboardAvoidingView>
-        <Modal
-          visible={this.state.showModal}
-          onRequestClose={this.toggleModal}
-          animationType='fade'>
-          <MessageSettings toggleModal={this.toggleModal} />
-        </Modal>
-      </View>
-    )
+          <View style={styles.textContainer}>
+            <Text style={styles.noMessageText}>Swipe to the left to select or create a group</Text>
+          </View>
+        </View>
+      )
+    }
   }
 }
 
