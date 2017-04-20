@@ -4,7 +4,9 @@ import {
   Modal,
   ScrollView,
   KeyboardAvoidingView,
+  Text,
   Keyboard} from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import PageHeader from '../Components/PageHeader'
 import MessageSettings from './MessageSettings'
 import NewMessageInput from '../Components/NewMessageInput'
@@ -61,16 +63,28 @@ class Chat extends Component {
     this.scrollView.scrollToEnd({animated: true})
   }
 
+  formatMessages = () => {
+    if (this.props.messages.length > 0) {
+      return this.props.messages.map((message, idx) => {
+        return <MessageItem key={idx} message={message} lang={this.props.lang} />
+      })
+    } else {
+      return (
+        <View style={styles.noMessages}>
+          <Icon name='keyboard-arrow-left' style={styles.scrollIconStyles} />
+          <Text style={styles.noMessageText}>Swipe Left To Create A Group</Text>
+        </View>
+      )
+    }
+  }
+
   render () {
-    const messages = this.props.messages.map((message, idx) => {
-      return <MessageItem key={idx} message={message} lang={this.props.lang} />
-    })
     return (
       <View style={[styles.container]}>
         <KeyboardAvoidingView
           style={styles.keyboardResizing}
           behavior='padding'
-        >
+          >
           <PageHeader
             iconName='more-horiz'
             headerText={this.props.groupTitle}
@@ -85,7 +99,7 @@ class Chat extends Component {
               onContentSizeChange={(contentWidth, contentHeight) => {
                 this.scrollToBottomOfChat(contentHeight)
               }}>
-              { messages }
+              { this.formatMessages() }
             </ScrollView>
           </View>
           <NewMessageInput />
